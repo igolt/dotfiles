@@ -1,0 +1,31 @@
+env:
+  TERM: alacritty
+
+window:
+  padding:
+    x: 5
+    y: 7
+
+font:
+  normal:
+    family: Liberation Mono
+    style: Regular
+
+draw_bold_text_with_bright_colors: false
+
+colors:
+  primary:
+    background: '#282828'
+    foreground: '#ebdbb2'
+
+  normal:
+    black:   '#282828'
+    red:     '#cc241d'
+    green:   '#98971a'
+    yellow:  '#d79921'
+    blue:    '#458588'
+    magenta: '#b16286'
+    cyan:    '#689d6a'
+    white:   '#ebdbb2'
+
+background_opacity: 1.00

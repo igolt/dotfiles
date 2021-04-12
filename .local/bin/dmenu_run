@@ -1,0 +1,8 @@
+#!/bin/sh
+FOREGROUND="#ebdbb2"
+FONT="Noto Sans Mono:size=12"
+
+COLORS="-nb "#32302f" -nf $FOREGROUND -sb "#fb4934" -sf $FOREGROUND"
+OPTS="-c -l 18 -bw 2 $COLORS"
+
+$(dmenu_path | dmenu -fn "$FONT" $OPTS "$@") &

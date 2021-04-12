@@ -1,0 +1,12 @@
+#!/bin/sh
+
+CACHE_FILE="${XDG_CACHE_HOME}/fehbg"
+
+if [ -z "$1" ]
+then
+	[ -f "$CACHE_FILE" ] && $CACHE_FILE 
+else
+	FILENAME="$(realpath "$1")"
+	feh --bg-fill "$FILENAME" \
+		&& mv ~/.fehbg "$CACHE_FILE"
+fi
