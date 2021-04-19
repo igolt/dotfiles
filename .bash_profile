@@ -4,6 +4,7 @@
 
 export PATH="$HOME/.local/bin:$PATH"
 
+# Default programs
 export BROWSER="brave"
 export EDITOR="nvim"
 export PAGER="less"
@@ -40,5 +41,13 @@ export GNUPGHOME="${XDG_CONFIG_HOME}/gnupg"
 
 # cargo
 export CARGO_HOME="${XDG_CONFIG_HOME}/cargo"
+
+# Java
+export _JAVA_AWT_WM_NONREPARENTING=1 # Fix for Java applications on BSPWM
+export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME"/java
+export JDK_JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME"/java
+
+# wget
+export WGETRC="${XDG_CONFIG_HOME}/wget/wgetrc"
 
 [[ -f ~/.bashrc ]] && . ~/.bashrc
