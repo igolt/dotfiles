@@ -6,11 +6,17 @@ nnoremap <leader>k :wincmd k<CR>
 nnoremap <leader>l :wincmd l<CR>
 
 nnoremap <leader>w :w<CR>
-nnoremap <leader>q :q<CR>
+nnoremap <leader>q :qa<CR>
 
 nnoremap <leader>e :e 
+nnoremap <leader>vs :vsplit 
+
 nnoremap <leader>s :s/
 nnoremap <leader>S :%s/
-" nnoremap <leader>t :TagbarToggle<CR>
+
+" Tagbar
+nnoremap <leader>t :TagbarToggle<CR>
+
+" NERDTree
 nnoremap <leader>nt :NERDTreeToggle<CR>
-nnoremap <leader>vs :vsplit 
+

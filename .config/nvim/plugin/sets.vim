@@ -19,6 +19,6 @@ set undofile
 
 set incsearch
 set termguicolors
-set scrolloff=8
+set scrolloff=10
 set colorcolumn=80
 set signcolumn=yes

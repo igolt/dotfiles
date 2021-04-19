@@ -6,15 +6,15 @@ Plug 'preservim/nerdtree'
 Plug 'gruvbox-community/gruvbox'
 Plug 'Raimondi/delimitMate'
 Plug 'vim-airline/vim-airline'
+Plug 'preservim/tagbar'
 Plug 'vim-airline/vim-airline-themes'
-" Plug 'majutsushi/tagbar'
-" Plug 'vim-jp/vim-cpp'
-" Plug 'rust-lang/rust.vim'
+Plug 'rust-lang/rust.vim'
 Plug 'sheerun/vim-polyglot'
 Plug 'ryanoasis/vim-devicons'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'ap/vim-css-color'
-" Plug 'universal-ctags/ctags'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" Plug 'neovim/nvim-lspconfig'
 call plug#end()
 
 colorscheme gruvbox

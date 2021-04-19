@@ -8,8 +8,9 @@ window:
 
 font:
   normal:
-    family: Liberation Mono
-    style: Regular
+    family: FiraCode Nerd Font
+    style: Medium
+  size: 11.0
 
 draw_bold_text_with_bright_colors: false
 
