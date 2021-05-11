@@ -8,10 +8,13 @@ set nowrap
 " set expandtab
 set smartindent
 set hidden
+set wildignorecase
 
 set relativenumber
 set number
 set nohlsearch
+set inccommand=split
+set list
 
 set noswapfile
 set nobackup
