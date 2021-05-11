@@ -1,0 +1,59 @@
+#!/bin/sh
+
+COLORS_FILE="${XDG_CONFIG_HOME:-$HOME/.config}/colors/colors.sh"
+_FONT="FiraCode Nerd Font:size=10:antialias=true"
+
+
+echo $COLORS_FILE
+
+if [ -f "$COLORS_FILE" ]; then
+	. "$COLORS_FILE"
+else
+	# DEFAULTS TO GRUVBOX COLORS
+	echo "Could not load file '$COLORS_FILE'"
+fi
+
+echo "$BACKGROUND"
+echo "$FOREGROUND"
+echo "$CYAN"
+
+_clock_battery() {
+	while true; do
+		local BAT0="/sys/class/power_supply/BAT0"
+		local BAT_LEVEL="$(cat "${BAT0}/capacity")"
+		local BAT_STATUS="$(cat "${BAT0}/status")"
+		local BAT_SYMBOL
+
+		if [ $BAT_LEVEL -gt 90 ] ; then
+			BAT_SYMBOL=""
+		elif [ $BAT_LEVEL -gt 80  ] ; then
+			BAT_SYMBOL=""
+		elif [ $BAT_LEVEL -gt 70 ] ; then
+			BAT_SYMBOL=""
+		elif [ $BAT_LEVEL -gt 60 ] ; then
+			BAT_SYMBOL=""
+		elif [ $BAT_LEVEL -gt 50 ] ; then
+			BAT_SYMBOL=""
+		elif [ $BAT_LEVEL -gt 40 ] ; then
+			BAT_SYMBOL=""
+		elif [ $BAT_LEVEL -gt 30 ] ; then
+			BAT_SYMBOL=""
+		elif [ $BAT_LEVEL -gt 20 ] ; then
+			BAT_SYMBOL=""
+		elif [ $BAT_LEVEL -gt 10 ] ; then
+			BAT_SYMBOL=""
+		else
+			BAT_SYMBOL=""
+		fi
+
+		[ ! "$BAT_STATUS" = "Discharging" ] && BAT_SYMBOL="${BAT_SYMBOL}ﮣ"
+		
+		echo "S$(date +"%a %-d %b  %H:%M ") | ${BAT_LEVEL}% ${BAT_SYMBOL} " 
+		sleep 1
+	done
+}
+
+while true; do
+	echo "%{A:dmenu_run:} Launcher %{A}"
+	sleep 2
+done | lemonbar -f "$_FONT" -F "$FOREGROUND" -B "$BACKGROUND" | sh &

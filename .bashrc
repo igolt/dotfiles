@@ -12,9 +12,19 @@ GIT_PS1_SHOWUNTRACKEDFILES="true"
 # GIT_PS1_SHOWUPSTREAM="auto"
 GIT_PS1_SHOWDIRTYSTATE="true"
 
-PS1='\[\e[36;1m\]\u@\[\e[1;35m\]\H> \[\e[0;91m\][ \[\e[1;34m\]\[\e[32;1m\]\w\[\e[1;37m\] ]$(__git_ps1 " \[\e[0;91m\](\[\e[33;1m\]%s\[\e[1;37m\])")\n\[\e[1;32m\]\$\[\e(B\e[m\]  '
+PS1='\[\e[36;1m\]\u@\[\e[1;35m\]\H> \[\e[0;91m\][ \[\e[1;34m\]\[\e[32;1m\]\w\[\e[1;37m\] ]$(__git_ps1 " \[\e[0;91m\](\[\e[33;1m\]שׂ %s\[\e[1;37m\])")\n\[\e[1;32m\]\$\[\e(B\e[m\]  '
 
 # ========= FUNCTIONS =========== #
+
+man() {
+    LESS_TERMCAP_md=$'\e[01;31m'    \
+    LESS_TERMCAP_me=$'\e[0m'        \
+    LESS_TERMCAP_so=$'\e[01;44;33m' \
+    LESS_TERMCAP_se=$'\e[0m'        \
+    LESS_TERMCAP_us=$'\e[01;32m'    \
+    LESS_TERMCAP_ue=$'\e[0m'        \
+    command man "$@"
+}
 
 swap() {
 	local TMPFILE=tmp.$$
@@ -22,7 +32,28 @@ swap() {
 }
 
 one-piece() {
-	mpv "https://pitou.goyabu.com/one-piece/$1.mp4"
+	CACHE_FILE="${XDG_CACHE_HOME}/one_piece"
+	if [ "$1" = "-l" ]; then
+		EP=$(cat "$CACHE_FILE")
+	else
+		EP="$1"
+		
+		[ -z "$EP" ] && {
+			[ -f "$CACHE_FILE" ] && EP=$(($(cat "$CACHE_FILE") + 1)) || EP=1
+		}
+	fi
+	
+	while true; do
+		mpv --no-input-terminal --quiet                  \
+			"https://pitou.goyabu.com/one-piece/$EP.mp4" \
+			&& echo "$EP" >| $XDG_CACHE_HOME/one_piece
+
+		echo -n "Continuar assistindo? [Y/n]: "
+		read -r ANSWER
+
+		[ "$ANSWER" = "n" ] && break
+		EP=$(($EP + 1))
+	done
 }
 
 # ======= SHELL BEHAVIOR ======== #
@@ -31,7 +62,7 @@ shopt -s autocd
 shopt -s cdspell
 set -o noclobber
 
-# ======== COMPLETITION ========= #
+# ======== BASIC COMPLETION ========= #
 
 source /usr/share/git/completion/git-completion.bash
 complete -c sudo
@@ -41,9 +72,15 @@ complete -c man
 
 # =========== ALIASES =========== #
 
-# colors
+# ls
 alias ls='ls --color=auto'
+alias ll='ls -lh'
+
+# diff
 alias diff='diff --color=auto'
+
+# grep
+alias grep='grep --color=auto'
 
 # git
 alias ga='git add'
@@ -54,8 +91,9 @@ alias gpl='git pull'
 alias gl='git log'
 
 # gcc
-alias wacc='gcc -W -Wall -ansi -pedantic'
-alias w++='g++ -W -Wall -std=c++11'
+alias wcc='gcc -W -Wall -pedantic'
+alias wacc='wcc -ansi'
+alias w++='g++ -W -Wall -pedantic -std=c++11'
 
 # avoiding errors
 alias sl='ls'
@@ -80,6 +118,11 @@ alias conky-todo='conky -c ~/.config/conky/conky_todo.conf'
 # nnn
 alias nnn='nnn -e'
 
+# nmcli
+alias wifi='nmcli device wifi'
+
 # edit config files
+PORTAGE_CONF="/etc/portage/make.conf"
+[ -f "$PORTAGE_CONF" ] && alias emkconf="$EDITOR $PORTAGE_CONF"
 alias evimrc="$EDITOR ${HOME}/.config/nvim/init.vim"
 alias ebashrc="$EDITOR ${HOME}/.bashrc && source ${HOME}/.bashrc"

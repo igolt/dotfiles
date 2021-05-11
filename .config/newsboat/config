@@ -19,7 +19,7 @@ bind-key g home
 # bind-key U show-urls
 # bind-key x pb-delete
 
-macro v set browser "setsid -f mpv --term-status-msg=''" ; open-in-browser ; set browser ""
+macro v set browser "setsid -f mpv --term-status-msg='' --quiet" ; open-in-browser ; set browser "$BROWSER"
 
 highlight all "---.*---" yellow
 highlight feedlist ".*(0/0))" black

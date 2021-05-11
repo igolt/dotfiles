@@ -21,23 +21,25 @@
 
 . panel_colors
 
-FOREGROUND="$foreground"
-BACKGROUND="$background"
+FOREGROUND="#ffffff"
+BACKGROUND="#2f3131"
 BLACK="$color0"
 RED="$color1"
 GREEN="$color2"
 YELLOW="$color3"
 BLUE="$color4"
 MAGENTA="$color5"
-CYAN="$color6"
+# CYAN="#1e5d8a"
+CYAN="#426e86"
 WHITE="$color7"
 
 # Panel configurations
-PANEL_HEIGHT=35
+PANEL_HEIGHT=38
 PANEL_WIDTH=1920
 PANEL_HORIZONTAL_OFFSET=0
-PANEL_VERTICAL_OFFSET=3
-PANEL_FONT="*-fixed-medium-r-n*--15-120-75-*-iso1*-1"
+PANEL_VERTICAL_OFFSET=0
+# PANEL_FONT="*-fixed-medium-r-n*--15-120-75-*-iso1*-1"
+PANEL_FONT="Noto Sans Nerd Font:style=solid:size=14"
 PANEL_FIFO=/tmp/panel-fifo
 PANEL_WM_NAME=bspwm_panel
 COLOR_DEFAULT_FG="$FOREGROUND"
@@ -63,37 +65,52 @@ COLOR_STATE_BG="$BACKGROUND"
 COLOR_TITLE_FG="$FOREGROUND"
 COLOR_TITLE_BG="$BACKGROUND"
 COLOR_SYS_FG="$FOREGROUND"
-COLOR_SYS_BG="$RED"
+COLOR_SYS_BG="$BACKGROUND"
 
 [ -e "$PANEL_FIFO" ] && rm "$PANEL_FIFO"
 mkfifo "$PANEL_FIFO"
 
-_battery() {
-	cat /sys/class/power_supply/BAT0/capacity
-}
-
-_clock() {
-	date +"%a %-d %b %H:%M"
-}
-
-clock_bat() {
+_clock_bat() {
 	while true; do
-		printf "SBattery: %s%% | %s\n" "$(_battery)" "$(_clock)"
-		sleep 5
+		local BAT0="/sys/class/power_supply/BAT0"
+		local BAT_LEVEL="$(cat "${BAT0}/capacity")"
+		local BAT_STATUS="$(cat "${BAT0}/status")"
+		local BAT_SYMBOL
+
+		if [ $BAT_LEVEL -gt 90 ] ; then
+			BAT_SYMBOL=""
+		elif [ $BAT_LEVEL -gt 80  ] ; then
+			BAT_SYMBOL=""
+		elif [ $BAT_LEVEL -gt 70 ] ; then
+			BAT_SYMBOL=""
+		elif [ $BAT_LEVEL -gt 60 ] ; then
+			BAT_SYMBOL=""
+		elif [ $BAT_LEVEL -gt 50 ] ; then
+			BAT_SYMBOL=""
+		elif [ $BAT_LEVEL -gt 40 ] ; then
+			BAT_SYMBOL=""
+		elif [ $BAT_LEVEL -gt 30 ] ; then
+			BAT_SYMBOL=""
+		elif [ $BAT_LEVEL -gt 20 ] ; then
+			BAT_SYMBOL=""
+		elif [ $BAT_LEVEL -gt 10 ] ; then
+			BAT_SYMBOL=""
+		else
+			BAT_SYMBOL=""
+		fi
+
+		[ ! "$BAT_STATUS" = "Discharging" ] && BAT_SYMBOL="${BAT_SYMBOL}ﮣ"
+		
+		echo "S$(date +"%a %-d %b  %H:%M ") ${BAT_LEVEL}% ${BAT_SYMBOL} " 
+		sleep 1
 	done
 }
 
-_cleanup() {
-	echo "Limpando tudo"
-}
-
-trap '_cleanup' 15
-
 # Just to make sure there is no double process
-killall -9 lemonbar xtitle xdo clock 2> /dev/null
+killall -9 lemonbar xtitle xdo 2> /dev/null
 
 # Echo every modules to PANEL_FIFO
-clock_bat > "$PANEL_FIFO" &
+_clock_bat > "$PANEL_FIFO" &
 xtitle -t 70 -sf 'T%s\n' > "$PANEL_FIFO" &
 bspc subscribe report > "$PANEL_FIFO" &
 num_mon=$(bspc query -M | wc -l)
@@ -150,7 +167,7 @@ while read -r line ; do
 									# focused free desktop
 									FG=$COLOR_FOCUSED_FREE_FG
 									BG=$COLOR_FOCUSED_FREE_BG
-									UL=$BG
+									UL=$FOREGROUND
 								else
 									# active free desktop
 									FG=$COLOR_FREE_FG
@@ -169,7 +186,7 @@ while read -r line ; do
 									# focused occupied desktop
 									FG=$COLOR_FOCUSED_OCCUPIED_FG
 									BG=$COLOR_FOCUSED_OCCUPIED_BG
-									UL=$BG
+									UL=$FOREGROUND
 								else
 									# active occupied desktop
 									FG=$COLOR_OCCUPIED_FG
@@ -213,7 +230,7 @@ done
 }
 
 # Get all the results of the modules above then pipe them to Lemonbar
-panel_bar < "$PANEL_FIFO" | lemonbar -a 12 \
+panel_bar < "$PANEL_FIFO" | lemonbar -a 12 -o -1 \
 -g "$PANEL_WIDTH"x"$PANEL_HEIGHT"+"$PANEL_HORIZONTAL_OFFSET"+"$PANEL_VERTICAL_OFFSET" \
 -f "$PANEL_FONT" -F "$COLOR_DEFAULT_FG" -B "$COLOR_DEFAULT_BG" -n "$PANEL_WM_NAME" | bash &
 

@@ -8,25 +8,11 @@ window:
 
 font:
   normal:
-    family: FiraCode Nerd Font
+    family: JetBrains Mono Nerd Font
     style: Medium
   size: 11.0
 
 draw_bold_text_with_bright_colors: false
 
-colors:
-  primary:
-    background: '#282828'
-    foreground: '#ebdbb2'
-
-  normal:
-    black:   '#282828'
-    red:     '#cc241d'
-    green:   '#98971a'
-    yellow:  '#d79921'
-    blue:    '#458588'
-    magenta: '#b16286'
-    cyan:    '#689d6a'
-    white:   '#ebdbb2'
-
-background_opacity: 1.00
+import:
+    - /home/igor/.config/alacritty/color.yml

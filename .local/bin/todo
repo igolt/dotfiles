@@ -6,23 +6,21 @@
 # add it.
 #
 
-file="$HOME/todo.md"
-touch "$file"
-height=$(wc -l "$file" | awk '{print $1}')
-prompt="Add/delete a task: "
+FILE="${TODO_FILE-:${XDG_DATA_HOME:-$HOME/.local/share}/todo.md}"
+[ -f "$FILE" ] || touch "$FILE"
+HEIGHT=$(wc -l "$FILE" | awk '{print $1}')
+PROMPT="Add/delete a task: "
 
-cmd=$(dmenu -l "$height" -p "$prompt" "$@" < "$file")
-while [ -n "$cmd" ]; do
- 	if grep -q "^$cmd\$" "$file"; then
-		grep -v "^$cmd\$" "$file" > "$file.$$"
-		mv "$file.$$" "$file"
-        height=$(( height - 1 ))
+CMD=$(dmenu_custom -l "$HEIGHT" -p "$PROMPT" "$@" < "$FILE")
+while [ -n "$CMD" ]; do
+ 	if grep -q "^$CMD\$" "$FILE"; then
+		grep -v "^$CMD\$" "$FILE" > "$FILE.$$"
+		mv "$FILE.$$" "$FILE"
+        HEIGHT=$(( HEIGHT - 1 ))
  	else
-		echo "$cmd" >> "$file"
-		height=$(( height + 1 ))
+		echo "$CMD" >> "$FILE"
+		HEIGHT=$(( HEIGHT + 1 ))
  	fi
 
-	cmd=$(dmenu -l "$height" -p "$prompt" "$@" < "$file")
+	CMD=$(dmenu -l "$HEIGHT" -p "$PROMPT" "$@" < "$FILE")
 done
-
-exit 0

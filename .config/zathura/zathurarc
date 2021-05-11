@@ -4,9 +4,11 @@ set adjust-open "best-fit"
 set page-padding 1
 
 set zoom-min 10
-set guioptions ""
 
 map i recolor
+map [fullscreen] i recolor
+map f toggle_fullscreen
+map [fullscreen] f toggle_fullscreen
 set recolor true
 
 set default-bg "#282828"

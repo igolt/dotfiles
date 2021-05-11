@@ -1,0 +1,30 @@
+#!/bin/sh
+
+PIDFILE="${XDG_RUNTIME_DIR:-/var/run/user/$(id -ru)}/aniwal-pids"
+
+_close_running() {
+	while read P; do
+		[ "$(ps -p "$P" -o comm=)" = "xwinwrap" ] && kill -9 "$P"
+	done < "$PIDFILE"
+}
+
+_setwal() {
+	xwinwrap -ov -ni -fs -- mpv --no-stop-screensaver --no-osd-bar \
+		--no-input-default-bindings --no-keepaspect                \
+		--loop --fullscreen -wid WID "$1" &
+
+	PID="$!"
+	echo "$PID" >| "$PIDFILE"
+}
+
+
+for ARG in "$@"; do
+	if [ "$ARG" = '--stop' ]; then
+		_close_running
+		rm -f "$PIDFILE"
+		exit
+	fi
+done
+
+_close_running
+_setwal "$1"

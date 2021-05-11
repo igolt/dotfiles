@@ -1,12 +1,76 @@
-#!/bin/sh
+#! /bin/sh
 
-CACHE_FILE="${XDG_CACHE_HOME}/fehbg"
+# ======================= VARIABLES ====================== #
+CACHE_FILE="${XDG_CACHE_HOME:-$HOME/.cache}/wallpaper"
 
-if [ -z "$1" ]
-then
-	[ -f "$CACHE_FILE" ] && $CACHE_FILE 
+# Error codes
+FILE_DOES_NOT_EXIST=1
+INVALID_MIME_TYPE=2
+COULD_NOT_LOAD_CACHE=3
+# ======================================================== #
+
+
+# ====================== FUNCTIONS ====================== #
+_eputs() {
+	echo "$@" >&2
+}
+
+_str_str() {
+	# HAYSTACK="$1"
+	# NEEDLE="$2"
+	echo "$1" | grep -Fiq "$2"
+}
+
+_is_animated() {
+	# MIME_TYPE="$1"
+	_str_str "$1" "video" ||
+		_str_str "$1" "gif"
+}
+
+_is_image() {
+	# MIME_TYPE="$1"
+	_str_str "$1" "image"
+}
+
+_clear_bg() {
+	animwal --stop
+}
+# ======================================================= #
+
+if [ "$#" = 0 ]; then
+	if [ -x "$CACHE_FILE" ]; then
+		_clear_bg
+		$CACHE_FILE
+		exit
+	else
+		_eputs "Could not load '$CACHE_FILE'"
+		exit $COULD_NOT_LOAD_CACHE
+	fi
+elif [ ! -f "$1" ]; then
+	_eputs "File \"$1\" does not exist"
+	exit $FILE_DOES_NOT_EXIST
+fi
+
+WALL="$(readlink -f "$1")"
+MIME="$(file --mime-type -Lb "$1")"
+
+# DEBUG echo "Wall: $WALL"
+# DEBUG echo "Mime: $MIME"
+
+if _is_animated "$MIME"; then
+	SETWALL="animwal"
+elif _is_image "$MIME"; then
+	_clear_bg
+	SETWALL="feh --no-fehbg --bg-fill"
 else
-	FILENAME="$(realpath "$1")"
-	feh --bg-fill "$FILENAME" \
-		&& mv ~/.fehbg "$CACHE_FILE"
+	_eputs "Invalid mime type"
+	exit $INVALID_MIME_TYPE
+fi
+
+# DEBUG echo "$SETWALL \"$WALL\""
+
+if $SETWALL "$WALL"; then
+	echo "#! /bin/sh" >| "$CACHE_FILE"
+	echo "$SETWALL \"$WALL\"" >> "$CACHE_FILE"
+	chmod +x "$CACHE_FILE"
 fi
