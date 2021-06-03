@@ -38,8 +38,7 @@ PANEL_HEIGHT=38
 PANEL_WIDTH=1920
 PANEL_HORIZONTAL_OFFSET=0
 PANEL_VERTICAL_OFFSET=0
-# PANEL_FONT="*-fixed-medium-r-n*--15-120-75-*-iso1*-1"
-PANEL_FONT="Noto Sans Nerd Font:style=solid:size=14"
+FONT1="Noto Sans Nerd Font:style=solid:size=14"
 PANEL_FIFO=/tmp/panel-fifo
 PANEL_WM_NAME=bspwm_panel
 COLOR_DEFAULT_FG="$FOREGROUND"
@@ -232,7 +231,7 @@ done
 # Get all the results of the modules above then pipe them to Lemonbar
 panel_bar < "$PANEL_FIFO" | lemonbar -a 12 -o -1 \
 -g "$PANEL_WIDTH"x"$PANEL_HEIGHT"+"$PANEL_HORIZONTAL_OFFSET"+"$PANEL_VERTICAL_OFFSET" \
--f "$PANEL_FONT" -F "$COLOR_DEFAULT_FG" -B "$COLOR_DEFAULT_BG" -n "$PANEL_WM_NAME" | bash &
+-f "$FONT1" -F "$COLOR_DEFAULT_FG" -B "$COLOR_DEFAULT_BG" -n "$PANEL_WM_NAME" | bash &
 
 sleep 0.5
 # Trigger the PANEL_FIFO to make it instantly refreshed after bspwmrc reloaded

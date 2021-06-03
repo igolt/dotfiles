@@ -16,7 +16,7 @@ export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_CACHE_HOME="$HOME/.cache"
 
 # SQLite
-export SQLITE_HISTORY="$XDG_DATA_HOME/sqlite_history"
+export SQLITE_HISTORY="$XDG_DATA_HOME/sqlite/history"
 
 # npm
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
@@ -54,6 +54,9 @@ export CARGO_HOME="$XDG_CONFIG_HOME/cargo"
 export _JAVA_AWT_WM_NONREPARENTING=1 # Fix for Java applications on BSPWM
 export _JAVA_OPTIONS="-Djava.util.prefs.userRoot=$XDG_CONFIG_HOME/java"
 export JDK_JAVA_OPTIONS="-Djava.util.prefs.userRoot=$XDG_CONFIG_HOME/java"
+
+# Python
+export PYTHONSTARTUP="$XDG_CONFIG_HOME/python/init.py"
 
 # wget
 export WGETRC="$XDG_CONFIG_HOME/wget/wgetrc"
