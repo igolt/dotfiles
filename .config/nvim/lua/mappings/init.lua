@@ -54,4 +54,6 @@ nnoremap('<leader>x', '<cmd>bdelete<cr>')
 
 nnoremap('<leader>nt', '<cmd>NvimTreeToggle<cr>')
 
+nnoremap('<leader>gs', '<cmd>vertical G<cr>')
+
 -- set_keymap_with_noremap('i', '<CR>', [[compe#confirm({ 'keys': "\<Plug>delimitMateCR", 'mode': '' })]], {expr = true, nowait = true})

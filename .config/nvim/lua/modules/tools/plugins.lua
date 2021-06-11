@@ -8,4 +8,7 @@ tools['iamcco/markdown-preview.nvim'] = {
   end
 }
 
+tools['tpope/vim-fugitive'] = {
+}
+
 return tools

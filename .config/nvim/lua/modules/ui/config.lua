@@ -60,16 +60,7 @@ function config.lualine()
       lualine_y = {
         {'o:encoding', upper = true},
         {'fileformat', icons_enabled = false, upper = true},
-        {
-          'filetype',
-          format = function(str)
-            local pos = string.find(str, 'u')
-            if not pos then
-              return str
-            end
-            return string.sub(str, 1, pos - 1)
-          end
-        },
+        {'filetype'},
       },
       lualine_z = {'location'}
     },
