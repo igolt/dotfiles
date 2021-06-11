@@ -21,8 +21,6 @@ local function tnoremap(lhs, rhs, opts)
   set_keymap_with_noremap('t', lhs, rhs, opts)
 end
 
-vim.g.mapleader = ' '
-
 -- Windows
 nnoremap('<leader>h', ':wincmd h<cr>', opt_silent)
 nnoremap('<leader>j', ':wincmd j<cr>', opt_silent)

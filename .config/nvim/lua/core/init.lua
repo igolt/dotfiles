@@ -1,5 +1,3 @@
-local pack = require('core.pack')
-
 -- Disable distribution plugins
 vim.g.loaded_gzip              = 1
 vim.g.loaded_tar               = 1
@@ -17,6 +15,13 @@ vim.g.loaded_netrw             = 1
 vim.g.loaded_netrwPlugin       = 1
 vim.g.loaded_netrwSettings     = 1
 vim.g.loaded_netrwFileHandlers = 1
+
+-- Set mapleader
+vim.g.mapleader = ' '
+vim.api.nvim_set_keymap('n', vim.g.mapleader, '', {noremap = true})
+vim.api.nvim_set_keymap('v', vim.g.mapleader, '', {noremap = true})
+
+local pack = require('core.pack')
 
 pack.ensure_plugins()
 require('core.options')
