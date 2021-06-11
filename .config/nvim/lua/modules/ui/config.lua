@@ -2,10 +2,9 @@ local config = {}
 
 function config.nvim_tree()
   -- On Ready Event for Lazy Loading work
-  require("nvim-tree.events").on_nvim_tree_ready(
-    function()
-      vim.cmd("NvimTreeRefresh")
-    end
+  require("nvim-tree.events").on_nvim_tree_ready(function()
+    vim.cmd("NvimTreeRefresh")
+  end
   )
   vim.g.nvim_tree_follow = 1
   vim.g.nvim_tree_hide_dotfiles = 1
@@ -19,11 +18,11 @@ function config.nvim_tree()
     default =  '',
     symlink =  '',
     git = {
-     unstaged = "✚",
-     staged =  "✚",
-     unmerged =  "≠",
-     renamed =  "≫",
-     untracked = "★",
+      unstaged = "✚",
+      staged =  "✚",
+      unmerged =  "≠",
+      renamed =  "≫",
+      untracked = "★",
     },
   }
 end
@@ -32,11 +31,59 @@ function config.nvim_bufferline()
   require('bufferline').setup{}
 end
 
-function config.galaxyline()
-  -- require('modules.ui.voitd_line')
+function config.gruvbox()
+  vim.g.gruvbox_invert_selection = 0
+  vim.g.gruvbox_italic = 1
+  vim.cmd('autocmd vimenter * ++nested colorscheme gruvbox')
 end
 
-function config.gruvbox()
+function config.lualine()
+  require'lualine'.setup {
+    options = {
+      icons_enabled = true,
+      theme = 'gruvbox',
+      component_separators = {'|', '|'},
+      section_separators = {'', ''},
+      disabled_filetypes = {}
+    },
+    sections = {
+      lualine_a = {'mode'},
+      lualine_b = {'branch'},
+      lualine_c = {
+        'filename',
+        {
+          'diagnostics',
+          sources = {'nvim_lsp'},
+        }
+      },
+      lualine_x = {},
+      lualine_y = {
+        {'o:encoding', upper = true},
+        {'fileformat', icons_enabled = false, upper = true},
+        {
+          'filetype',
+          format = function(str)
+            local pos = string.find(str, 'u')
+            if not pos then
+              return str
+            end
+            return string.sub(str, 1, pos - 1)
+          end
+        },
+      },
+      lualine_z = {'location'}
+    },
+    inactive_sections = {
+      lualine_a = {},
+      lualine_b = {},
+      lualine_c = {'filename'},
+      lualine_x = {'location'},
+      lualine_y = {},
+      lualine_z = {}
+    },
+    tabline = {},
+    extensions = {}
+  }
 end
 
 return config

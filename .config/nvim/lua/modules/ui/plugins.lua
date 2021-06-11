@@ -2,7 +2,7 @@ local ui = {}
 local conf = require('modules.ui.config')
 
 ui['gruvbox-community/gruvbox'] = {
-  config = [[vim.cmd('autocmd vimenter * ++nested colorscheme gruvbox')]]
+  config = conf.gruvbox
 }
 
 ui['glepnir/zephyr-nvim'] = {
@@ -20,10 +20,9 @@ ui['kyazdani42/nvim-tree.lua'] = {
   requires = 'kyazdani42/nvim-web-devicons'
 }
 
-ui['glepnir/galaxyline.nvim'] = {
-  branch = 'main',
-  config = conf.galaxyline,
-  requires = 'kyazdani42/nvim-web-devicons'
+ui['hoob3rt/lualine.nvim'] = {
+  config = conf.lualine,
+  requires = {'kyazdani42/nvim-web-devicons', opt = true},
 }
 
 return ui

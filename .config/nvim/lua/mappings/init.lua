@@ -40,6 +40,7 @@ nnoremap('<leader>v', ':vsplit ')
 
 set_keymap_with_noremap({'n', 'v'}, '<leader>s', ':s/')
 nnoremap('<leader>S', ':%s/')
+nnoremap('=f', 'gg=G', opt_silent)
 
 -- Terminal
 nnoremap('<C-u>', '<cmd>ToggleTerm<cr>', opt_silent)

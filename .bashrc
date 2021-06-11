@@ -27,33 +27,33 @@ man() {
 }
 
 swap() {
-	local TMPFILE=tmp.$$
-	mv "$1" $TMPFILE && mv "$2" "$1" && mv $TMPFILE "$2"
+    local TMPFILE=tmp.$$
+    mv "$1" $TMPFILE && mv "$2" "$1" && mv $TMPFILE "$2"
 }
 
 one-piece() {
-	CACHE_FILE="${XDG_CACHE_HOME}/one_piece"
-	if [ "$1" = "-l" ]; then
-		EP=$(cat "$CACHE_FILE")
-	else
-		EP="$1"
-		
-		[ -z "$EP" ] && {
-			[ -f "$CACHE_FILE" ] && EP=$(($(cat "$CACHE_FILE") + 1)) || EP=1
-		}
-	fi
-	
-	while true; do
-		mpv --no-input-terminal --quiet                  \
-			"https://pitou.goyabu.com/one-piece/$EP.mp4" \
-			&& echo "$EP" >| $XDG_CACHE_HOME/one_piece
+    CACHE_FILE="${XDG_CACHE_HOME}/one_piece"
+    if [ "$1" = "-l" ]; then
+        EP=$(cat "$CACHE_FILE")
+    else
+        EP="$1"
 
-		echo -n "Continuar assistindo? [Y/n]: "
-		read -r ANSWER
+        [ -z "$EP" ] && {
+            [ -f "$CACHE_FILE" ] && EP=$(($(cat "$CACHE_FILE") + 1)) || EP=1
+        }
+    fi
 
-		[ "$ANSWER" = "n" ] && break
-		EP=$(($EP + 1))
-	done
+    while true; do
+        mpv --no-input-terminal --quiet                  \
+            "https://pitou.goyabu.com/one-piece/$EP.mp4" \
+            && echo "$EP" >| $XDG_CACHE_HOME/one_piece
+
+        echo -n "Continuar assistindo? [Y/n]: "
+        read -r ANSWER
+
+        [ "$ANSWER" = "n" ] && break
+        EP=$(($EP + 1))
+    done
 }
 
 # ======= SHELL BEHAVIOR ======== #
@@ -69,12 +69,25 @@ complete -c sudo
 complete -c pidof
 complete -c killall
 complete -c man
+complete -c pgrep
+complete -c pkill
 
 # =========== ALIASES =========== #
+
+# Bookmarks
+FACUL_DIR="$HOME/Files/Faculdade/2021"
+alias cdfacul="cd $FACUL_DIR"
+alias cdstenio="cd '$FACUL_DIR/DCC059 - Grafos'"
+alias cdpassini="cd '$FACUL_DIR/DCC160 - Lógica e Fundamentos para a computação'"
+alias cdvimrc="cd $XDG_CONFIG_HOME/nvim"
 
 # ls
 alias ls='ls --color=auto'
 alias ll='ls -lh'
+alias lll='ls -lhA'
+alias lla='ls -lha'
+alias la='ls -a'
+alias lA='ls -A'
 
 # diff
 alias diff='diff --color=auto'
@@ -96,6 +109,7 @@ alias wacc='wcc -ansi'
 alias w++='g++ -W -Wall -pedantic -std=c++11'
 
 # avoiding errors
+alias vm='mv'
 alias sl='ls'
 alias claer='clear'
 alias clera='clear'
@@ -103,8 +117,11 @@ alias clera='clear'
 # ffplay
 alias ffplay='ffplay -loglevel warning'
 
-# update the system
+# pacman
 alias updt='sudo pacman -Syu'
+alias pacinstall='sudo pacman -S'
+alias pacremove='sudo pacman -Rns'
+alias pacremoveun='sudo pacman -Rns $(pacman -Qdtq)'
 
 # zathura
 alias zathura='zathura --fork'
@@ -115,14 +132,13 @@ alias rm='rm -i'
 # conky
 alias conky-todo='conky -c ~/.config/conky/conky_todo.conf'
 
-# nnn
-alias nnn='nnn -e'
-
 # nmcli
 alias wifi='nmcli device wifi'
 
 # edit config files
 PORTAGE_CONF="/etc/portage/make.conf"
 [ -f "$PORTAGE_CONF" ] && alias emkconf="$EDITOR $PORTAGE_CONF"
-alias evimrc="$EDITOR ${HOME}/.config/nvim/init.vim"
-alias ebashrc="$EDITOR ${HOME}/.bashrc && source ${HOME}/.bashrc"
+alias evimrc="$EDITOR $HOME/.config/nvim/init.vim"
+alias ebashrc="$EDITOR $HOME/.bashrc && source $HOME/.bashrc"
+
+alias paitu='python'

@@ -1,8 +1,9 @@
-Xft.dpi: 144
+Xft.dpi: 120
 
 st.font: JetBrains Mono Nerd Font:size=11:antialias=true
+st.alpha: 0.9
 
-#include "Xresources.d/nord"
+#include "Xresources.d/color"
 
 Xft.autohint: 0
 Xft.lcdfilter: lcddefault

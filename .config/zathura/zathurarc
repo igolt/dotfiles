@@ -1,3 +1,11 @@
+map i recolor
+map [fullscreen] i recolor
+map [presentation] i recolor
+map f toggle_fullscreen
+map [fullscreen] f toggle_fullscreen
+map [presentation] j navigate next
+map [presentation] k navigate previous
+
 set selection-clipboard clipboard
 set adjust-open "best-fit"
 
@@ -5,12 +13,6 @@ set page-padding 1
 
 set zoom-min 10
 
-map i recolor
-map [fullscreen] i recolor
-map f toggle_fullscreen
-map [fullscreen] f toggle_fullscreen
 set recolor true
 
-set default-bg "#282828"
-set recolor-lightcolor "#282828"
-set recolor-darkcolor "#ebdbb2"
+include zathura_colors

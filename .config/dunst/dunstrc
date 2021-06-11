@@ -83,9 +83,7 @@
 
     ignore_dbusclose = false
 
-
     force_xinerama = false
-
 
     mouse_left_click = close_current
     mouse_middle_click = do_action, close_current
@@ -109,8 +107,8 @@
     timeout = 10
 
 [urgency_normal]
-    background = "#282828"
-    foreground = "#ffffff"
+    background = "#282A36"
+    foreground = "#F8F8F2"
     timeout = 10
 
 [urgency_critical]

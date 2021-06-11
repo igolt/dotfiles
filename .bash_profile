@@ -2,7 +2,7 @@
 # ~/.bash_profile
 #
 
-export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/.local/bin:$HOME/.local/scripts:$PATH"
 
 # Default programs
 export VISUAL="nvim"

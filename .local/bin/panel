@@ -231,7 +231,7 @@ done
 # Get all the results of the modules above then pipe them to Lemonbar
 panel_bar < "$PANEL_FIFO" | lemonbar -a 12 -o -1 \
 -g "$PANEL_WIDTH"x"$PANEL_HEIGHT"+"$PANEL_HORIZONTAL_OFFSET"+"$PANEL_VERTICAL_OFFSET" \
--f "$FONT1" -F "$COLOR_DEFAULT_FG" -B "$COLOR_DEFAULT_BG" -n "$PANEL_WM_NAME" | bash &
+-f "$FONT1" -F "$COLOR_DEFAULT_FG" -B "$COLOR_DEFAULT_BG" -n "$PANEL_WM_NAME" | sh &
 
 sleep 0.5
 # Trigger the PANEL_FIFO to make it instantly refreshed after bspwmrc reloaded

@@ -15,4 +15,4 @@ font:
 draw_bold_text_with_bright_colors: false
 
 import:
-    - /home/igor/.config/alacritty/color.yml
+    - /home/igor/.config/alacritty/current_colorscheme.yml
