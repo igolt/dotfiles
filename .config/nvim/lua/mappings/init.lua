@@ -45,8 +45,7 @@ nnoremap('<C-u>', '<cmd>ToggleTerm<cr>', opt_silent)
 tnoremap('<C-u>', '<C-\\><C-n><cmd>ToggleTerm<cr>', opt_silent)
 
 nnoremap('<C-p>', '<cmd>Telescope find_files<cr>')
-nnoremap('<leader>td', '<cmd>lua require("plugins.telescope").vimdots()<cr>')
-nnoremap('<leader>tp', '<cmd>lua require("plugins.telescope").packages()<cr>')
+nnoremap('<leader>td', '<cmd>Telescope vimdots<cr>')
 
 -- Buffers
 nnoremap('<leader>bn', '<cmd>BufferLineCycleNext<cr>')
