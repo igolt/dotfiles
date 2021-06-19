@@ -25,6 +25,5 @@ local pack = require('core.pack')
 
 pack.ensure_plugins()
 require('core.options')
-require('mappings')
 require('core.event')
 pack.load_compile()
