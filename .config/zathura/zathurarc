@@ -15,4 +15,4 @@ set zoom-min 10
 
 set recolor true
 
-include zathura_colors
+include current_colorscheme
