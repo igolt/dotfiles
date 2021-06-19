@@ -11,6 +11,11 @@ completion['hrsh7th/nvim-compe'] = {
   config = conf.nvim_compe,
 }
 
+completion['hrsh7th/vim-vsnip'] = {
+  event = 'InsertCharPre',
+  config = conf.vim_vsnip
+}
+
 completion['nvim-telescope/telescope.nvim'] = {
   cmd = 'Telescope',
   config = conf.telescope,

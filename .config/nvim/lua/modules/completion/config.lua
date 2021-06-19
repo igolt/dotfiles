@@ -6,7 +6,16 @@ function config.nvim_compe()
     debug = false,
     min_length = 1,
     preselect = 'always',
-    allow_prefix_unmatch = false,
+    -- allow_prefix_unmatch = false,
+    throttle_time = 80,
+    source_timeout = 200,
+    resolve_timeout = 800,
+    incomplete_delay = 400,
+    max_abbr_width = 100,
+    max_kind_width = 100,
+    max_menu_width = 100,
+    documentation = true,
+
     source = {
       path = true,
       buffer = true,
@@ -25,6 +34,10 @@ function config.nvim_lsp()
   require('modules.completion.lspconfig')
 end
 
+function config.vim_vsnip()
+  -- Set path to snippets
+end
+
 function config.telescope()
   if not packer_plugins['plenary.nvim'].loaded then
     vim.cmd [[packadd plenary.nvim]]
@@ -39,9 +52,6 @@ function config.telescope()
         selection_caret = " ",
         sorting_strategy = 'ascending',
         results_width = 0.8,
-        file_previewer = require'telescope.previewers'.vim_buffer_cat.new,
-        grep_previewer = require'telescope.previewers'.vim_buffer_vimgrep.new,
-        qflist_previewer = require'telescope.previewers'.vim_buffer_qflist.new,
       },
       extensions = {
         fzy_native = {

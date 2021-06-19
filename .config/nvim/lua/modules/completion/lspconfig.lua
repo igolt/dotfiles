@@ -36,12 +36,22 @@ local servers = {
         },
       },
     },
-
   },
+  tsserver = {},
   vimls = {},
   pyright = {},
   intelephense = {},
   rust_analyzer = {},
+}
+
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+capabilities.textDocument.completion.completionItem.resolveSupport = {
+  properties = {
+    'documentation',
+    'detail',
+    'additionalTextEdits'
+  }
 }
 
 local on_attach = function(_, bufnr)
@@ -73,5 +83,6 @@ end
 
 for lang_server, config in pairs(servers) do
   config.on_attach = on_attach
+  config.capabilities = capabilities
   lspconfig[lang_server].setup(config)
 end
