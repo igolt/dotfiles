@@ -1,37 +1,32 @@
-local global_local = {
-  encoding       = "utf-8",
-  -- clipboard      = 'unnamedplus',
-  backupskip     = "/tmp/*,$TMPDIR/*,$TMP/*,$TEMP/*,*/shm/*,/private/var/*,.vault.vim",
+vim.o.encoding       = "utf-8"
+vim.o.clipboard      = 'unnamedplus'
+vim.o.mouse          = 'nvi'
+vim.o.backupskip     = "/tmp/*,$TMPDIR/*,$TMP/*,$TEMP/*,*/shm/*,/private/var/*,.vault.vim"
 
-  tabstop        = 2,
-  softtabstop    = 2,
-  shiftwidth     = 0,
-  wrap           = false,
-  expandtab      = true,
-  smartindent    = true,
-  hidden         = true,
-  wildignorecase = true,
+vim.o.tabstop        = 2
+vim.o.softtabstop    = 2
+vim.o.shiftwidth     = 0
+vim.o.wrap           = false
+vim.o.expandtab      = true
+vim.o.smartindent    = true
+vim.o.hidden         = true
+vim.o.wildignorecase = true
 
-  relativenumber = true,
-  number         = true,
-  hlsearch       = false,
-  inccommand     = 'split',
-  listchars      = 'tab:»·,nbsp:+,trail:·,extends:→,precedes:←',
-  list           = true,
+vim.o.relativenumber = true
+vim.o.number         = true
+vim.o.hlsearch       = false
+vim.o.inccommand     = 'split'
+vim.o.listchars      = 'tab:»·,nbsp:+,trail:·,extends:→,precedes:←'
+vim.o.list           = true
 
-  swapfile       = false,
-  backup         = false,
-  undofile       = true,
+vim.o.swapfile       = false
+vim.o.backup         = false
+vim.o.undofile       = true
 
-  completeopt    = 'menuone,noselect',
-  incsearch      = true,
-  termguicolors  = true,
-  sidescrolloff  = 20,
-  scrolloff      = 10,
-  colorcolumn    = '80',
-  signcolumn     = 'yes',
-}
-
-for name, value in pairs(global_local) do
-  vim.o[name] = value
-end
+vim.o.completeopt    = 'menuone,noselect'
+vim.o.incsearch      = true
+vim.o.termguicolors  = true
+vim.o.sidescrolloff  = 20
+vim.o.scrolloff      = 10
+vim.o.colorcolumn    = '80'
+vim.o.signcolumn     = 'yes'
