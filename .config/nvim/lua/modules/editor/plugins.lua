@@ -16,4 +16,10 @@ editor['akinsho/nvim-toggleterm.lua'] = {
   cmd = 'ToggleTerm'
 }
 
+editor['tpope/vim-repeat'] = {
+}
+
+editor['folke/zen-mode.nvim'] = {
+}
+
 return editor
