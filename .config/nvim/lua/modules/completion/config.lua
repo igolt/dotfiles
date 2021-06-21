@@ -44,23 +44,23 @@ function config.telescope()
     vim.cmd [[packadd popup.nvim]]
     vim.cmd [[packadd telescope-fzy-native.nvim]]
   end
+
   require('telescope').setup {
-    require('telescope').setup {
-      defaults = {
-        prompt_prefix = '🔭 ',
-        prompt_position = 'top',
-        selection_caret = " ",
-        sorting_strategy = 'ascending',
-        results_width = 0.8,
-      },
-      extensions = {
-        fzy_native = {
-          override_generic_sorter = false,
-          override_file_sorter = true,
-        }
+    defaults = {
+      prompt_prefix = '🔭 ',
+      prompt_position = 'top',
+      selection_caret = " ",
+      sorting_strategy = 'ascending',
+      results_width = 0.8,
+    },
+    extensions = {
+      fzy_native = {
+        override_generic_sorter = false,
+        override_file_sorter = true,
       }
     }
   }
+
   require('telescope').load_extension('fzy_native')
   require('telescope').load_extension('vimdots')
 end
