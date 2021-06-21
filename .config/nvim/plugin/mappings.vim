@@ -28,11 +28,18 @@ nnoremap <leader>td <cmd>Telescope vimdots<cr>
 " Buffers
 nnoremap <leader>bn <cmd>BufferLineCycleNext<cr>
 nnoremap <leader>bp <cmd>BufferLineCyclePrev<cr>
+nnoremap <leader>bs <cmd>BufferLinePick<cr>
 nnoremap <leader>x <cmd>bdelete<cr>
 
 nnoremap <leader>nt <cmd>NvimTreeToggle<cr>
 
 nnoremap <leader>gs <cmd>vertical G<cr>
+
+" IndentBlankLine
+nnoremap <leader><leader>i <cmd>lua require('utils').indent_blankline_toggle()<cr>
+
+" ZenMode
+nnoremap <leader>zm <cmd>ZenMode<cr>
 
 inoremap <silent><expr> <CR>      compe#confirm('<CR>')
 inoremap <silent><expr> <C-e>     compe#close('<C-e>')

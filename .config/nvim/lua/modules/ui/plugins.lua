@@ -25,4 +25,11 @@ ui['hoob3rt/lualine.nvim'] = {
   requires = {'kyazdani42/nvim-web-devicons', opt = true},
 }
 
+ui['lukas-reineke/indent-blankline.nvim'] = {
+  event = 'BufRead',
+  branch = 'lua',
+  -- config = [[vim.g.indent_blankline_char = "│"]]
+  config = conf.indent_blakline
+}
+
 return ui
