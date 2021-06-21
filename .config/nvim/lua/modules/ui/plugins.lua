@@ -28,7 +28,6 @@ ui['hoob3rt/lualine.nvim'] = {
 ui['lukas-reineke/indent-blankline.nvim'] = {
   event = 'BufRead',
   branch = 'lua',
-  -- config = [[vim.g.indent_blankline_char = "│"]]
   config = conf.indent_blakline
 }
 

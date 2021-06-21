@@ -37,6 +37,7 @@ local servers = {
       },
     },
   },
+  html = {},
   tsserver = {},
   vimls = {},
   pyright = {},

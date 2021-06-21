@@ -35,9 +35,6 @@ nnoremap <leader>nt <cmd>NvimTreeToggle<cr>
 
 nnoremap <leader>gs <cmd>vertical G<cr>
 
-" IndentBlankLine
-nnoremap <leader><leader>i <cmd>lua require('utils').indent_blankline_toggle()<cr>
-
 " ZenMode
 nnoremap <leader>zm <cmd>ZenMode<cr>
 

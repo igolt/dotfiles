@@ -78,6 +78,7 @@ function config.lualine()
 end
 
 function config.indent_blakline()
+  vim.cmd [[nnoremap <leader><leader>i <cmd>IndentBlanklineToggle<cr>]]
   vim.g.indent_blankline_char = "│"
   vim.g.indent_blankline_show_first_indent_level = true
   vim.g.indent_blankline_filetype_exclude = {
