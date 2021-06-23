@@ -25,10 +25,10 @@ function Packer:load_plugins()
   for _,m in ipairs(plugins_file) do
     local repos = require(m:sub(0, #m-4))
     for repo, conf in pairs(repos) do
-      print(repo)
       self.repos[#self.repos+1] = vim.tbl_extend('force',{repo},conf)
     end
   end
+  print('Compiled!')
 end
 
 function Packer:load_packer()

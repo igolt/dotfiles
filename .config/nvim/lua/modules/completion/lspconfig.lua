@@ -38,6 +38,7 @@ local servers = {
     },
   },
   html = {},
+  cssls = {},
   tsserver = {},
   vimls = {},
   pyright = {},

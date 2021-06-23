@@ -31,4 +31,7 @@ ui['lukas-reineke/indent-blankline.nvim'] = {
   config = conf.indent_blakline
 }
 
+ui['ap/vim-css-color'] = {
+}
+
 return ui

@@ -22,4 +22,8 @@ editor['folke/zen-mode.nvim'] = {
   cmd = 'ZenMode'
 }
 
+editor['alvan/vim-closetag'] = {
+  ft = {'html', 'xhtml', 'phtml'}
+}
+
 return editor

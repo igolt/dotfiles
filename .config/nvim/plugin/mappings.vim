@@ -19,7 +19,7 @@ nnoremap <leader>S :%s/
 nnoremap <silent>=f gg=G
 
 " Terminal
-nnoremap <silent><C-u> <cmd>ToggleTerm<cr>
+nnoremap <silent><C-u> :ToggleTerm<cr>
 tnoremap <silent><C-u> <C-\><C-n><cmd>ToggleTerm<cr>
 
 nnoremap <C-p> <cmd>Telescope find_files<cr>
