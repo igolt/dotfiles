@@ -13,7 +13,7 @@ nnoremap Y y$
 nnoremap <leader>e :e 
 nnoremap <leader>v :vsplit 
 
-nmap <leader>s :s/
+noremap <leader>s :s/
 nnoremap <leader>S :%s/
 
 nnoremap <silent>=f gg=G
