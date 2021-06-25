@@ -91,7 +91,6 @@ function config.indent_blakline()
     "packer",
     "vimwiki",
     "markdown",
-    "json",
     "txt",
     "vista",
     "help",

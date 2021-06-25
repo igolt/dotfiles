@@ -1,6 +1,8 @@
 local config = {}
 
 function config.nvim_compe()
+  vim.cmd[[inoremap <silent><expr> <CR>  compe#confirm('<CR>')]]
+  vim.cmd[[inoremap <silent><expr> <C-e> compe#close('<C-e>')]]
   require'compe'.setup {
     enabled = true,
     debug = false,
@@ -35,7 +37,8 @@ function config.nvim_lsp()
 end
 
 function config.vim_vsnip()
-  -- Set path to snippets
+ vim.cmd [[imap <expr> <C-l>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-l>']]
+ vim.cmd [[smap <expr> <C-l>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-l>']]
 end
 
 function config.telescope()

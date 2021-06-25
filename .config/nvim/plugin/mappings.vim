@@ -38,8 +38,5 @@ nnoremap <leader>gs <cmd>vertical G<cr>
 " ZenMode
 nnoremap <leader>zm <cmd>ZenMode<cr>
 
-inoremap <silent><expr> <CR>      compe#confirm('<CR>')
-inoremap <silent><expr> <C-e>     compe#close('<C-e>')
-
 imap <expr> <C-l>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-l>'
 smap <expr> <C-l>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-l>'
