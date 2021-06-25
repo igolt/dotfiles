@@ -26,9 +26,9 @@ nnoremap <C-p> <cmd>Telescope find_files<cr>
 nnoremap <leader>td <cmd>Telescope vimdots<cr>
 
 " Buffers
-nnoremap <leader>bn <cmd>BufferLineCycleNext<cr>
-nnoremap <leader>bp <cmd>BufferLineCyclePrev<cr>
-nnoremap <leader>bs <cmd>BufferLinePick<cr>
+nnoremap <leader>bl <cmd>BufferLineCycleNext<cr>
+nnoremap <leader>bh <cmd>BufferLineCyclePrev<cr>
+nnoremap <leader>bp <cmd>BufferLinePick<cr>
 nnoremap <leader>x <cmd>bdelete<cr>
 
 nnoremap <leader>nt <cmd>NvimTreeToggle<cr>
