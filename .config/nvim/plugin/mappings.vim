@@ -26,10 +26,10 @@ nnoremap <C-p> <cmd>Telescope find_files<cr>
 nnoremap <leader>td <cmd>Telescope vimdots<cr>
 
 " Buffers
-nnoremap <leader>bl <cmd>BufferLineCycleNext<cr>
-nnoremap <leader>bh <cmd>BufferLineCyclePrev<cr>
-nnoremap <leader>bp <cmd>BufferLinePick<cr>
-nnoremap <leader>x <cmd>bdelete<cr>
+nnoremap <silent>]b :bnext<cr>
+nnoremap <silent>[b :bprevious<cr>
+nnoremap <leader>b  <cmd>BufferLinePick<cr>
+nnoremap <leader>x  <cmd>bdelete<cr>
 
 nnoremap <leader>nt <cmd>NvimTreeToggle<cr>
 
@@ -37,6 +37,9 @@ nnoremap <leader>gs <cmd>vertical G<cr>
 
 " ZenMode
 nnoremap <leader>zm <cmd>ZenMode<cr>
+
+inoremap <silent><expr> <C-Space> compe#complete()
+inoremap <silent><expr> <CR>      compe#confirm('<CR>')
 
 imap <expr> <C-l>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-l>'
 smap <expr> <C-l>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-l>'
