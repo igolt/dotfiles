@@ -22,6 +22,9 @@ export SQLITE_HISTORY="$XDG_DATA_HOME/sqlite/history"
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
 export PATH="$PATH:$XDG_DATA_HOME/npm/bin"
 
+# node
+export NODE_REPL_HISTORY="$XDG_DATA_HOME/node/node_repl_history"
+
 # X11
 X11_CONFIG_DIR="$XDG_CONFIG_HOME/X11"
 export XINITRC="$X11_CONFIG_DIR/xinitrc"
