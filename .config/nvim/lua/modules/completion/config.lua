@@ -1,14 +1,11 @@
 local config = {}
 
 function config.nvim_compe()
-  vim.cmd[[inoremap <silent><expr> <CR>  compe#confirm('<CR>')]]
-  vim.cmd[[inoremap <silent><expr> <C-e> compe#close('<C-e>')]]
   require'compe'.setup {
     enabled = true,
     debug = false,
     min_length = 1,
     preselect = 'always',
-    -- allow_prefix_unmatch = false,
     throttle_time = 80,
     source_timeout = 200,
     resolve_timeout = 800,
@@ -19,14 +16,14 @@ function config.nvim_compe()
     documentation = true,
 
     source = {
-      path = true,
-      buffer = true,
       calc = true,
+      path = true,
       vsnip = true,
+      buffer = true,
       nvim_lsp = true,
       nvim_lua = true,
-      spell = true,
-      tags = true,
+      tags = false,
+      spell = false,
       snippets_nvim = false,
     },
   }
@@ -51,10 +48,11 @@ function config.telescope()
   require('telescope').setup {
     defaults = {
       prompt_prefix = '🔭 ',
-      prompt_position = 'top',
       selection_caret = " ",
       sorting_strategy = 'ascending',
-      results_width = 0.8,
+      layout_config = {
+        prompt_position = 'top',
+      }
     },
     extensions = {
       fzy_native = {
