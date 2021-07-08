@@ -16,6 +16,11 @@ completion['hrsh7th/vim-vsnip'] = {
   config = conf.vim_vsnip
 }
 
+completion['windwp/nvim-autopairs'] = {
+  after = 'nvim-compe',
+  config = conf.autopairs
+}
+
 completion['nvim-telescope/telescope.nvim'] = {
   cmd = 'Telescope',
   config = conf.telescope,
@@ -24,6 +29,11 @@ completion['nvim-telescope/telescope.nvim'] = {
     {'nvim-lua/plenary.nvim', opt = true},
     {'nvim-telescope/telescope-fzy-native.nvim', opt = true},
   }
+}
+
+completion['alvan/vim-closetag'] = {
+  opt = true;
+  ft = {'html', 'xhtml', 'phtml'}
 }
 
 return completion

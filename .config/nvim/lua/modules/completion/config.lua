@@ -66,4 +66,26 @@ function config.telescope()
   require('telescope').load_extension('vimdots')
 end
 
+function config.autopairs()
+  local autopairs = require('nvim-autopairs')
+  local Rule = require('nvim-autopairs.rule')
+
+  autopairs.setup()
+
+  autopairs.add_rules {
+    Rule(' ', ' ', {'bash', 'sh'})
+    :with_pair(function (opts)
+      local pair = opts.line:sub(opts.col, opts.col + 1)
+      return vim.tbl_contains({ '()', '[]', '{}'}, pair)
+    end),
+    Rule("**", "**", "markdown"),
+    Rule("_", "_", "markdown"),
+  }
+
+  require('nvim-autopairs.completion.compe').setup {
+    map_cr = true,
+    map_complete = true
+  }
+end
+
 return config
