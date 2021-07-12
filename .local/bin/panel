@@ -22,7 +22,7 @@
 . panel_colors
 
 FOREGROUND="#ffffff"
-BACKGROUND="#2f3131"
+BACKGROUND="#dd000000"
 BLACK="$color0"
 RED="$color1"
 GREEN="$color2"
@@ -34,7 +34,7 @@ CYAN="#426e86"
 WHITE="$color7"
 
 # Panel configurations
-PANEL_HEIGHT=38
+PANEL_HEIGHT=35
 PANEL_WIDTH=1920
 PANEL_HORIZONTAL_OFFSET=0
 PANEL_VERTICAL_OFFSET=0
@@ -98,7 +98,7 @@ _clock_bat() {
 			BAT_SYMBOL=""
 		fi
 
-		[ ! "$BAT_STATUS" = "Discharging" ] && BAT_SYMBOL="${BAT_SYMBOL}ﮣ"
+		[ ! "$BAT_STATUS" = "Discharging" ] && BAT_SYMBOL="${BAT_SYMBOL}"
 
 		echo "S$(date +"%a %-d %b  %H:%M ") ${BAT_LEVEL}% ${BAT_SYMBOL} " 
 		sleep 1

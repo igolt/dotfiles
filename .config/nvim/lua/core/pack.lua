@@ -35,7 +35,7 @@ function Packer:load_packer()
     packer = require('packer')
   end
   packer.init({
-    compile_path = packer_compiled,
+    -- compile_path = packer_compiled,
     git = {clone_timeout = 120},
     disable_commands = true
   })
@@ -106,13 +106,13 @@ function plugins.convert_compile_file()
   end
   file:close()
 
-  os.remove(packer_compiled)
+  -- os.remove(packer_compiled)
 end
 
 function plugins.magic_compile()
   print('Calling magic compile')
   plugins.compile()
-  plugins.convert_compile_file()
+  -- plugins.convert_compile_file()
 end
 
 function plugins.auto_compile()
@@ -120,13 +120,13 @@ function plugins.auto_compile()
   if file:match(modules_dir) then
     plugins.clean()
     plugins.compile()
-    plugins.convert_compile_file()
+    -- plugins.convert_compile_file()
   end
 end
 
 function plugins.load_compile()
   if vim.fn.filereadable(compiled_to_lua_path) == 1 then
-    require(compiled_to_lua)
+    -- require(compiled_to_lua)
   else
     assert('Missing packer compile file Run PackerCompile Or PackerInstall to fix')
   end

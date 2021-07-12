@@ -18,4 +18,6 @@ editor['folke/zen-mode.nvim'] = {
   cmd = 'ZenMode'
 }
 
+editor['godlygeek/tabular'] = {}
+
 return editor

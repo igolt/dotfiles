@@ -1,24 +1,24 @@
 local ui = {}
 local conf = require('modules.ui.config')
 
-ui['gruvbox-community/gruvbox'] = {
-  -- config = conf.gruvbox
-}
+-- ui['gruvbox-community/gruvbox'] = {
+--   -- config = conf.gruvbox
+-- }
 
-ui['glepnir/zephyr-nvim'] = {
-  -- config = [[vim.cmd('colorscheme zephyr')]]
-}
+-- ui['glepnir/zephyr-nvim'] = {
+--   -- config = [[vim.cmd('colorscheme zephyr')]]
+-- }
 
 ui['marko-cerovac/material.nvim'] = {
   config = conf.material_nvim
 }
 
-ui['Mofiqul/vscode.nvim'] = {
-  -- config = function ()
-  --   vim.g.vscode_style = 'dark'
-  --   vim.cmd [[colorscheme vscode]]
-  -- end
-}
+-- ui['Mofiqul/vscode.nvim'] = {
+--   -- config = function ()
+--   --   vim.g.vscode_style = 'dark'
+--   --   vim.cmd [[colorscheme vscode]]
+--   -- end
+-- }
 
 ui['akinsho/nvim-bufferline.lua'] = {
   config = conf.nvim_bufferline,
@@ -44,7 +44,8 @@ ui['lukas-reineke/indent-blankline.nvim'] = {
 ui['norcalli/nvim-colorizer.lua'] = {
   config = function ()
     require('colorizer').setup({
-      'sh', 'yml', 'yaml', 'html', 'javascript', 'css', 'scss', 'conf'
+      'sh', 'yml', 'yaml', 'html', 'javascript', 'css', 'scss', 'conf',
+      'dosini'
     }, {
       mode = 'background'
     })

@@ -7,7 +7,7 @@
     indicate_hidden = yes
     shrink = yes
 
-    transparency = 10
+    transparency = 0
 
     notification_height = 0
 
@@ -17,7 +17,7 @@
 
     horizontal_padding = 8
 
-    frame_width = 3
+    frame_width = 1
 
 
     separator_color = frame
@@ -37,7 +37,7 @@
 
     alignment = left
 
-    # vertical_alignment = center
+    vertical_alignment = center
 
     show_age_threshold = 60
 
@@ -102,13 +102,13 @@
     context = ctrl+shift+period
 
 [urgency_low]
-    background = "#222222"
-    foreground = "#888888"
+    background = "#2f3131"
+    foreground = "#ffffff"
     timeout = 10
 
 [urgency_normal]
-    background = "#282A36"
-    foreground = "#F8F8F2"
+    background = "#000000"
+    foreground = "#ffffff"
     timeout = 10
 
 [urgency_critical]

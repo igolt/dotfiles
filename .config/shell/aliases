@@ -62,7 +62,7 @@ alias wifi='nmcli device wifi'
 # edit config files
 PORTAGE_CONF="/etc/portage/make.conf"
 [ -f "$PORTAGE_CONF" ] && alias emkconf="$EDITOR $PORTAGE_CONF"
-alias evimrc="$EDITOR $HOME/.config/nvim/init.vim"
+alias ealiases="$EDITOR $ALIASES_FILE"
 alias ebashrc="$EDITOR $HOME/.bashrc && source $HOME/.bashrc"
 
 alias paitu='python'

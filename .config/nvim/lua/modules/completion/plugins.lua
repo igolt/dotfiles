@@ -31,9 +31,4 @@ completion['nvim-telescope/telescope.nvim'] = {
   }
 }
 
-completion['alvan/vim-closetag'] = {
-  opt = true;
-  ft = {'html', 'xhtml', 'phtml'}
-}
-
 return completion

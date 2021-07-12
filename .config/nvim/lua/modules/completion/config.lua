@@ -73,7 +73,7 @@ function config.autopairs()
   autopairs.setup()
 
   autopairs.add_rules {
-    Rule(' ', ' ', {'bash', 'sh'})
+    Rule(' ', ' ')
     :with_pair(function (opts)
       local pair = opts.line:sub(opts.col, opts.col + 1)
       return vim.tbl_contains({ '()', '[]', '{}'}, pair)

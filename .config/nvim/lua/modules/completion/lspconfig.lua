@@ -83,6 +83,34 @@ local on_attach = function(_, bufnr)
   -- buf_set_keymap('n', '<leader>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
 end
 
+require("vim.lsp.protocol").CompletionItemKind = {
+  " Text", -- Text
+  " Method", -- Method
+  "ƒ Function", -- Function
+  " Constructor", -- Constructor
+  "識 Field", -- Field
+  " Variable", -- Variable
+  " Class", -- Class
+  "ﰮ Interface", -- Interface
+  " Module", -- Module
+  " Property", -- Property
+  " Unit", -- Unit
+  " Value", -- Value
+  "了 Enum", -- Enum
+  " Keyword", -- Keyword
+  " Snippet", -- Snippet
+  " Color", -- Color
+  " File", -- File
+  "渚 Reference", -- Reference
+  " Folder", -- Folder
+  " Enum", -- Enum
+  " Constant", -- Constant
+  " Struct", -- Struct
+  "鬒 Event", -- Event
+  "Ψ Operator", -- Operator
+  " Type Parameter", -- TypeParameter
+}
+
 for lang_server, config in pairs(servers) do
   config.on_attach = on_attach
   config.capabilities = capabilities

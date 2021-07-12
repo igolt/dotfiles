@@ -13,6 +13,6 @@ set page-padding 1
 
 set zoom-min 10
 
-set recolor true
+set recolor false
 
 include current_colorscheme
