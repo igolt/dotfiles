@@ -4,6 +4,7 @@ nnoremap <silent><leader>j :wincmd j<cr>
 nnoremap <silent><leader>k :wincmd k<cr>
 nnoremap <silent><leader>l :wincmd l<cr>
 
+nnoremap <Esc> <Cmd>noh<Cr>
 nnoremap <leader>w <cmd>w<cr>
 nnoremap <leader>q <cmd>q<cr>
 nnoremap FQ <cmd>qa<cr>
@@ -26,8 +27,8 @@ nnoremap <C-p> <cmd>Telescope find_files<cr>
 nnoremap <leader>td <cmd>Telescope vimdots<cr>
 
 " Buffers
-nnoremap <silent>]b :bnext<cr>
-nnoremap <silent>[b :bprevious<cr>
+nnoremap <silent><Tab>   :bnext<cr>
+nnoremap <silent><S-Tab> :bprevious<cr>
 nnoremap <leader>b  <cmd>BufferLinePick<cr>
 nnoremap <leader>x  <cmd>bdelete<cr>
 
