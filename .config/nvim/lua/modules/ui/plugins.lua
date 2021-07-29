@@ -10,15 +10,16 @@ local conf = require('modules.ui.config')
 -- }
 
 ui['marko-cerovac/material.nvim'] = {
+  opt = true,
   config = conf.material_nvim
 }
 
--- ui['Mofiqul/vscode.nvim'] = {
---   -- config = function ()
---   --   vim.g.vscode_style = 'dark'
---   --   vim.cmd [[colorscheme vscode]]
---   -- end
--- }
+ui['Mofiqul/vscode.nvim'] = {
+  config = function ()
+    vim.g.vscode_style = 'dark'
+    vim.cmd [[colorscheme vscode]]
+  end
+}
 
 ui['akinsho/nvim-bufferline.lua'] = {
   config = conf.nvim_bufferline,

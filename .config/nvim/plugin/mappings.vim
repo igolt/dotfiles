@@ -27,12 +27,12 @@ nnoremap <C-p> <cmd>Telescope find_files<cr>
 nnoremap <leader>td <cmd>Telescope vimdots<cr>
 
 " Buffers
-nnoremap <silent><Tab>   :bnext<cr>
-nnoremap <silent><S-Tab> :bprevious<cr>
+nnoremap ]b :bnext<cr>
+nnoremap [b :bprevious<cr>
 nnoremap <leader>b  <cmd>BufferLinePick<cr>
 nnoremap <leader>x  <cmd>bdelete<cr>
 
-nnoremap <leader>nt <cmd>NvimTreeToggle<cr>
+nnoremap <C-n> <cmd>NvimTreeToggle<cr>
 
 nnoremap <leader>gs <cmd>vertical G<cr>
 

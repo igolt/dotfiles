@@ -55,10 +55,10 @@ function config.lualine()
   require'lualine'.setup {
     options = {
       icons_enabled = true,
-      theme = 'material',
+      theme = 'vscode',
       component_separators = {'|', '|'},
       section_separators = {'', ''},
-      disabled_filetypes = {}
+      disabled_filetypes = {'NvimTree'}
     },
     sections = {
       lualine_a = {'mode'},

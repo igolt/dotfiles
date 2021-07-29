@@ -5,7 +5,7 @@ function config.nvim_compe()
     enabled = true,
     debug = false,
     min_length = 1,
-    preselect = 'always',
+    preselect = 'disable',
     throttle_time = 80,
     source_timeout = 200,
     resolve_timeout = 800,
