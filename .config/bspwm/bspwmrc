@@ -1,6 +1,7 @@
 #! /bin/sh
 
 pgrep -x panel > /dev/null || panel &
+pgrep -x bspswallow > /dev/null || bspswallow &
 pgrep -x xsetroot > /dev/null || xsetroot -cursor_name left_ptr &
 setwal
 
