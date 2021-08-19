@@ -4,6 +4,8 @@
 
 export PATH="$HOME/.local/bin:$HOME/.local/scripts:$PATH"
 
+export SCREEN_RES="1920x1080"
+
 # Default programs
 export VISUAL="nvim"
 export BROWSER="brave"
