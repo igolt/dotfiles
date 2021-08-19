@@ -50,9 +50,6 @@ alias pacinstall='sudo pacman -S'
 alias pacremove='sudo pacman -Rns'
 alias pacremoveun='sudo pacman -Rns $(pacman -Qdtq)'
 
-# zathura
-alias zathura='zathura --fork'
-
 # rm
 alias rm='rm -i'
 
