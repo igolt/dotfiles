@@ -1,8 +1,8 @@
 " -- Windows
-nnoremap <silent><leader>h :wincmd h<cr>
-nnoremap <silent><leader>j :wincmd j<cr>
-nnoremap <silent><leader>k :wincmd k<cr>
-nnoremap <silent><leader>l :wincmd l<cr>
+nnoremap <silent><C-h> :wincmd h<cr>
+nnoremap <silent><C-j> :wincmd j<cr>
+nnoremap <silent><C-k> :wincmd k<cr>
+nnoremap <silent><C-l> :wincmd l<cr>
 
 nnoremap <Esc> <Cmd>noh<Cr>
 nnoremap <leader>w <cmd>w<cr>
