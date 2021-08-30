@@ -36,7 +36,8 @@ swap() {
 }
 
 one-piece() {
-    CACHE_FILE="${XDG_CACHE_HOME}/one_piece"
+    CACHE_FILE="${XDG_CACHE_HOME:-$HOME/.cache}/one_piece"
+
     if [ "$1" = "-l" ]; then
         EP=$(cat "$CACHE_FILE")
     else
@@ -50,7 +51,7 @@ one-piece() {
     while true; do
         mpv --no-input-terminal --quiet                  \
             "https://pitou.goyabu.com/one-piece/$EP.mp4" \
-            && echo "$EP" >| $XDG_CACHE_HOME/one_piece
+            && echo "$EP" >| "$CACHE_FILE"
 
         echo -n "Continuar assistindo? [Y/n]: "
         read -r ANSWER
