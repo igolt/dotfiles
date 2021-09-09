@@ -2,9 +2,6 @@ local fn,uv,api = vim.fn,vim.loop,vim.api
 local vim_path = require('core.global').vim_path
 local data_dir = require('core.global').data_dir
 local modules_dir = vim_path .. '/lua/modules'
-local packer_compiled = data_dir .. '/packer_compiled.vim'
-local compiled_to_lua = 'packer_compiled'
-local compiled_to_lua_path = ('%s/lua/%s.lua'):format(data_dir, compiled_to_lua)
 local packer = nil
 
 local Packer = {}
@@ -35,7 +32,6 @@ function Packer:load_packer()
     packer = require('packer')
   end
   packer.init({
-    -- compile_path = packer_compiled,
     git = {clone_timeout = 120},
     disable_commands = true
   })
@@ -76,43 +72,9 @@ function plugins.ensure_plugins()
   Packer:init_ensure_plugins()
 end
 
-function plugins.convert_compile_file()
-  local lines = {}
-  local lnum = 1
-  lines[#lines+1] = 'vim.cmd [[packadd packer.nvim]]\n'
-
-  for line in io.lines(packer_compiled) do
-    lnum = lnum + 1
-    if lnum > 15 then
-      lines[#lines+1] = line .. '\n'
-      if line == 'END' then
-        break
-      end
-    end
-  end
-  table.remove(lines, #lines)
-
-  if vim.fn.isdirectory(data_dir .. '/lua') ~= 1 then
-    os.execute('mkdir -p '..data_dir .. '/lua')
-  end
-
-  if vim.fn.filereadable(compiled_to_lua_path) == 1 then
-    os.remove(compiled_to_lua_path)
-  end
-
-  local file = io.open(compiled_to_lua_path, "w")
-  for _,line in ipairs(lines) do
-    file:write(line)
-  end
-  file:close()
-
-  -- os.remove(packer_compiled)
-end
-
 function plugins.magic_compile()
   print('Calling magic compile')
   plugins.compile()
-  -- plugins.convert_compile_file()
 end
 
 function plugins.auto_compile()
@@ -120,16 +82,10 @@ function plugins.auto_compile()
   if file:match(modules_dir) then
     plugins.clean()
     plugins.compile()
-    -- plugins.convert_compile_file()
   end
 end
 
-function plugins.load_compile()
-  if vim.fn.filereadable(compiled_to_lua_path) == 1 then
-    -- require(compiled_to_lua)
-  else
-    assert('Missing packer compile file Run PackerCompile Or PackerInstall to fix')
-  end
+function plugins.setup()
   vim.cmd [[command! PackerCompile lua require('core.pack').magic_compile()]]
   vim.cmd [[command! PackerInstall lua require('core.pack').install()]]
   vim.cmd [[command! PackerUpdate lua require('core.pack').update()]]

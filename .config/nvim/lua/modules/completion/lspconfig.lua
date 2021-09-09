@@ -23,7 +23,7 @@ local servers = {
         },
         diagnostics = {
           enable = true,
-          globals = {'vim', 'packer_plugins'},
+          globals = {'screen', 'root', 'client', 'vim', 'packer_plugins', 'awesome'},
         },
         workspace = {
           library = {

@@ -1,13 +1,19 @@
 local ui = {}
 local conf = require('modules.ui.config')
 
--- ui['gruvbox-community/gruvbox'] = {
---   -- config = conf.gruvbox
--- }
+ui['gruvbox-community/gruvbox'] = {
+  opt = true,
+  config = conf.gruvbox
+}
 
--- ui['glepnir/zephyr-nvim'] = {
---   -- config = [[vim.cmd('colorscheme zephyr')]]
--- }
+ui['glepnir/zephyr-nvim'] = {
+  opt = true,
+  config = [[vim.cmd('colorscheme zephyr')]]
+}
+
+ui['sainnhe/gruvbox-material'] = {
+  config = [[vim.cmd('colorscheme gruvbox-material')]]
+}
 
 ui['marko-cerovac/material.nvim'] = {
   opt = true,
@@ -15,6 +21,7 @@ ui['marko-cerovac/material.nvim'] = {
 }
 
 ui['Mofiqul/vscode.nvim'] = {
+  opt = true,
   config = function ()
     vim.g.vscode_style = 'dark'
     vim.cmd [[colorscheme vscode]]
@@ -42,6 +49,12 @@ ui['lukas-reineke/indent-blankline.nvim'] = {
   config = conf.indent_blakline
 }
 
+ui['lewis6991/gitsigns.nvim'] = {
+  event = {'BufRead','BufNewFile'},
+  config = conf.gitsigns,
+  requires = {'nvim-lua/plenary.nvim', opt=true}
+}
+
 ui['norcalli/nvim-colorizer.lua'] = {
   config = function ()
     require('colorizer').setup({
@@ -51,12 +64,6 @@ ui['norcalli/nvim-colorizer.lua'] = {
       mode = 'background'
     })
   end
-}
-
-ui['lewis6991/gitsigns.nvim'] = {
-  event = {'BufRead','BufNewFile'},
-  config = conf.gitsigns,
-  requires = {'nvim-lua/plenary.nvim', opt=true}
 }
 
 return ui
