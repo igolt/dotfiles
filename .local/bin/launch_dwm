@@ -1,0 +1,6 @@
+#!/bin/sh
+
+setwal
+dwm_panel
+
+exec dwm

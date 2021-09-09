@@ -1,5 +1,6 @@
 #!/bin/sh
 
+xprofile="${XPROFILE:-$HOME/.Xresources}"
 userresources="${XRESOURCES:-$HOME/.Xresources}"
 usermodmap="${XMODMAP:-$HOME/.Xmodmap}"
 sysresources=/etc/X11/xinit/.Xresources
@@ -27,4 +28,4 @@ fi
 pgrep -x dunst > /dev/null || dunst &
 pgrep -x picom > /dev/null || picom &
 
-exec bspwm
+launch_dwm
