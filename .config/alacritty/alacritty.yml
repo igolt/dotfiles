@@ -1,10 +1,10 @@
 env:
   TERM: alacritty
 
-window:
-  padding:
-    x: 5
-    y: 7
+# window:
+#   padding:
+#     x: 5
+#     y: 7
 
 font:
   normal:
