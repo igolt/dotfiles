@@ -30,7 +30,7 @@ YELLOW="$color3"
 BLUE="$color4"
 MAGENTA="$color5"
 # CYAN="#1e5d8a"
-CYAN="#426e86"
+CYAN="#458588"
 WHITE="$color7"
 
 # Panel configurations
@@ -38,7 +38,9 @@ PANEL_HEIGHT=35
 PANEL_WIDTH=1920
 PANEL_HORIZONTAL_OFFSET=0
 PANEL_VERTICAL_OFFSET=0
-FONT1="Noto Sans Nerd Font:style=solid:size=14"
+PANEL_GEOMETRY="${PANEL_WIDTH}x${PANEL_HEIGHT}+${PANEL_HORIZONTAL_OFFSET}+${PANEL_VERTICAL_OFFSET}"
+PANEL_FONT="Noto Sans Nerd Font:style=solid:size=13"
+PANEL_EMOJI_FONT="Twemoji:size=12"
 PANEL_FIFO=/tmp/panel-fifo
 PANEL_WM_NAME=bspwm_panel
 COLOR_DEFAULT_FG="$FOREGROUND"
@@ -227,9 +229,9 @@ panel_bar() {
 }
 
 # Get all the results of the modules above then pipe them to Lemonbar
-panel_bar < "$PANEL_FIFO" | lemonbar -a 12 -o -1 \
-	-g "$PANEL_WIDTH"x"$PANEL_HEIGHT"+"$PANEL_HORIZONTAL_OFFSET"+"$PANEL_VERTICAL_OFFSET" \
-	-f "$FONT1" -F "$COLOR_DEFAULT_FG" -B "$COLOR_DEFAULT_BG" -n "$PANEL_WM_NAME" | sh &
+panel_bar < "$PANEL_FIFO" | lemonbar -a 12 -o -1     \
+	-g "$PANEL_GEOMETRY" -f "$PANEL_FONT" -f "$PANEL_EMOJI_FONT" \
+    -F "$COLOR_DEFAULT_FG" -B "$COLOR_DEFAULT_BG" -n "$PANEL_WM_NAME" | sh &
 
 sleep 0.5
 # Trigger the PANEL_FIFO to make it instantly refreshed after bspwmrc reloaded

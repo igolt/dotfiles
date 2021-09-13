@@ -4,7 +4,7 @@ while true; do
     DATE="$(date +"%a %-d %b  %H:%M")"
     BAT_LEVEL="$(cat /sys/class/power_supply/BAT0/capacity)"
 
-    if ! xsetroot -name " Date: $DATE Bat: $BAT_LEVEL%"; then
+    if ! xsetroot -name " Date: $DATE | Bat: $BAT_LEVEL%" 2>/dev/null; then
         break;
     fi
     sleep 2s

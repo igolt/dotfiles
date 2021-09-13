@@ -61,6 +61,12 @@ one-piece() {
     done
 }
 
+compile-dwm() {
+    pushd ~/AUR/dwm
+    ./install.sh
+    popd
+}
+
 # ======= SHELL BEHAVIOR ======== #
 
 shopt -s autocd
@@ -81,6 +87,7 @@ complete -c pkill
 
 # Managing dotfiles
 alias dotfiles="git --git-dir='$HOME/.dotfiles' --work-tree='$HOME'"
+alias d='dotfiles'
 
 # Bookmarks
 FACUL_DIR="$HOME/Files/Faculdade/2021"

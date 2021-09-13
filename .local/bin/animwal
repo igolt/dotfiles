@@ -3,33 +3,33 @@
 PIDFILE="${XDG_RUNTIME_DIR:-/var/run/user/$(id -ru)}/aniwal-pids"
 
 _get_monitors_geometry() {
-	echo "${SCREEN_RES}+0+0"
+    echo "${SCREEN_RES}+0+0"
 }
 
 _close_running() {
-	if [ -e "$PIDFILE" ]; then
-		while read P; do
-			[ "$(ps -p "$P" -o comm=)" = "xwinwrap" ] && kill -9 "$P"
-		done < "$PIDFILE" && rm -f "$PIDFILE"
-	fi
+    if [ -e "$PIDFILE" ]; then
+        while read P; do
+            [ "$(ps -p "$P" -o comm=)" = "xwinwrap" ] && kill "$P"
+        done < "$PIDFILE" && rm -f "$PIDFILE"
+    fi
 }
 
 _setwal() {
-	local GEOMETRY=$(_get_monitors_geometry)
+    local GEOMETRY=$(_get_monitors_geometry)
 
-	xwinwrap -ov -ni -g "$GEOMETRY" -- mpv --no-stop-screensaver           \
-		--no-osd-bar --no-terminal --no-input-default-bindings             \
-		--no-keepaspect --loop --fullscreen -wid WID "$1" &
+    xwinwrap -fdt -nf -un -ov -ni -g "$GEOMETRY" -- mpv --no-stop-screensaver  \
+        --no-osd-bar --no-terminal --no-input-default-bindings                 \
+        --no-keepaspect --loop --fullscreen -wid WID "$1" 2>/dev/null &
 
-	echo "$!" >| "$PIDFILE"
+    echo "$!" >| "$PIDFILE"
 }
 
 
 for ARG in "$@"; do
-	if [ "$ARG" = '--stop' ]; then
-		_close_running
-		exit
-	fi
+    if [ "$ARG" = '--stop' ]; then
+        _close_running
+        exit
+    fi
 done
 
 _close_running
