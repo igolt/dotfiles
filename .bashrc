@@ -12,9 +12,21 @@ GIT_PS1_SHOWUNTRACKEDFILES="true"
 # GIT_PS1_SHOWUPSTREAM="auto"
 GIT_PS1_SHOWDIRTYSTATE="true"
 
-PS1='\[\e[36;1m\]\u@\[\e[1;35m\]\H> \[\e[0;91m\][ \[\e[1;34m\]\[\e[32;1m\]\w\[\e[1;37m\] ]$(__git_ps1 " \[\e[0;91m\](\[\e[33;1m\]שׂ %s\[\e[1;37m\])")\n\[\e[1;32m\]\$\[\e(B\e[m\]  '
+PS1='\[\e[36;1m\]\u@\[\e[1;35m\]\H> \[\e[0;91m\][ \[\e[1;34m\]\[\e[32;1m\]\w\[\e[1;37m\] ]$(__git_ps1 " \[\e[0;91m\](\[\e[33;1m\] %s\[\e[1;37m\])")\n\[\e[1;32m\]\$\[\e(B\e[m\]  '
 
 # ========= FUNCTIONS =========== #
+
+mkclassf() {
+    local FOLDER="$1"
+    local SLIDES_FOLDER="$FOLDER/Slides"
+    local EXERCISES_FOLDER="$FOLDER/Exercícios"
+    local VIDEOS_FOLDER="$FOLDER/Vídeos"
+
+    mkdir "$FOLDER"                  \
+        && mkdir "$SLIDES_FOLDER"    \
+        && mkdir "$EXERCISES_FOLDER" \
+        && mkdir "$VIDEOS_FOLDER"
+}
 
 man() {
     LESS_TERMCAP_md=$'\e[01;31m'    \
@@ -49,7 +61,7 @@ one-piece() {
     fi
 
     while true; do
-        mpv --no-input-terminal --quiet                  \
+        mpv --no-input-terminal --really-quiet           \
             "https://pitou.goyabu.com/one-piece/$EP.mp4" \
             && echo "$EP" >| "$CACHE_FILE"
 
@@ -85,6 +97,9 @@ complete -c pkill
 
 # =========== ALIASES =========== #
 
+#yarn
+alias yarn='yarn --use-yarnrc "$XDG_CONFIG_HOME/yarn/config"'
+
 # Managing dotfiles
 alias dotfiles="git --git-dir='$HOME/.dotfiles' --work-tree='$HOME'"
 alias d='dotfiles'
@@ -95,6 +110,8 @@ alias cdfacul="cd $FACUL_DIR"
 alias cdstenio="cd '$FACUL_DIR/DCC059 - Grafos'"
 alias cdpassini="cd '$FACUL_DIR/DCC160 - Lógica e Fundamentos para a computação'"
 alias cdvimrc="cd $XDG_CONFIG_HOME/nvim"
+
+alias cdnrc="cd '$HOME/Develop/nrc'"
 
 # ls
 alias ls='ls --color=auto'
@@ -150,6 +167,4 @@ alias wifi='nmcli device wifi'
 
 # edit config files
 [ -f "/etc/portage/make.conf" ] && alias emkconf="sudoedit /etc/portage/make.conf"
-alias ebashrc="$EDITOR $HOME/.bashrc && source $HOME/.bashrc"
-
-alias paitu='python'
+alias ebashrc='$EDITOR $HOME/.bashrc && source $HOME/.bashrc'
