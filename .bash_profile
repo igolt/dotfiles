@@ -2,7 +2,7 @@
 # ~/.bash_profile
 #
 
-export PATH="$HOME/.local/bin:$HOME/.local/scripts:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
 
 export SCREEN_RES="1920x1080"
 
@@ -68,5 +68,8 @@ export WGETRC="$XDG_CONFIG_HOME/wget/wgetrc"
 
 # todo file
 export TODO_FILE="$XDG_DATA_HOME/todo.md"
+
+export C_INCLUDE_PATH="$HOME/.local/include"
+export LD_LIBRARY_PATH="$HOME/.local/lib/goat"
 
 [ -f ~/.bashrc ] && . ~/.bashrc
