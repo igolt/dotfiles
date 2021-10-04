@@ -71,9 +71,9 @@ local on_attach = function(_, bufnr)
   buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
   buf_set_keymap('n', '<C-s>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
   buf_set_keymap('n', '<leader>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
-  buf_set_keymap('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-  buf_set_keymap('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
-  buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+  buf_set_keymap('n', '<leader>rn', '<cmd>Lspsaga rename<CR>', opts)
+  buf_set_keymap('n', '<leader>ca', '<cmd>Lspsaga code_action<CR>', opts)
+  buf_set_keymap('n', 'gr', '<cmd>Lspsaga lsp_finder<CR>', opts)
   buf_set_keymap('n', '<leader>d', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
   buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
   buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
@@ -108,6 +108,11 @@ require("vim.lsp.protocol").CompletionItemKind = {
   "Ψ Operator", -- Operator
   " Type Parameter", -- TypeParameter
 }
+
+vim.fn.sign_define('LspDiagnosticsSignHint'       , {text = ' '})
+vim.fn.sign_define('LspDiagnosticsSignError'      , {text = ' '})
+vim.fn.sign_define('LspDiagnosticsSignWarning'    , {text = ' '})
+vim.fn.sign_define('LspDiagnosticsSignInformation', {text = ' '})
 
 for lang_server, config in pairs(servers) do
   config.on_attach = on_attach

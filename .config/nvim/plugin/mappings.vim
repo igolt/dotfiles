@@ -23,7 +23,7 @@ nnoremap <silent>=f gg=G
 nnoremap <silent><C-u> :ToggleTerm<cr>
 tnoremap <silent><C-u> <C-\><C-n><cmd>ToggleTerm<cr>
 
-nnoremap <C-p> <cmd>Telescope find_files<cr>
+nnoremap <C-p> <cmd>Telescope project_files<cr>
 nnoremap <leader>td <cmd>Telescope vimdots<cr>
 
 " Buffers
@@ -31,6 +31,7 @@ nnoremap ]b :bnext<cr>
 nnoremap [b :bprevious<cr>
 nnoremap <leader>b  <cmd>BufferLinePick<cr>
 nnoremap <leader>x  <cmd>bdelete<cr>
+nnoremap <leader>X  <cmd>BufOnly<cr>
 
 nnoremap <C-n> <cmd>NvimTreeToggle<cr>
 

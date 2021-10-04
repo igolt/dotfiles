@@ -6,6 +6,15 @@ completion['neovim/nvim-lspconfig'] = {
   config = conf.nvim_lsp
 }
 
+completion['glepnir/lspsaga.nvim'] = {
+  cmd = 'Lspsaga',
+}
+
+completion['mhartington/formatter.nvim'] = {
+  event = 'BufReadPre',
+  config = conf.formatter
+}
+
 completion['hrsh7th/nvim-compe'] = {
   event = 'InsertEnter',
   config = conf.nvim_compe,
