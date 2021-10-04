@@ -2,10 +2,6 @@
 
 PIDFILE="${XDG_RUNTIME_DIR:-/var/run/user/$(id -ru)}/aniwal-pids"
 
-_get_monitors_geometry() {
-    echo "${SCREEN_RES}+0+0"
-}
-
 _close_running() {
     if [ -e "$PIDFILE" ]; then
         while read P; do
@@ -15,9 +11,7 @@ _close_running() {
 }
 
 _setwal() {
-    local GEOMETRY=$(_get_monitors_geometry)
-
-    xwinwrap -fdt -nf -un -ov -ni -g "$GEOMETRY" -- mpv --no-stop-screensaver  \
+    xwinwrap -fdt -nf -un -ov -ni -fs -- mpv --no-stop-screensaver             \
         --no-osd-bar --no-terminal --no-input-default-bindings                 \
         --no-keepaspect --loop --fullscreen -wid WID "$1" 2>/dev/null &
 
