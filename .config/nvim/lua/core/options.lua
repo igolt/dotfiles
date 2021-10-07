@@ -17,6 +17,7 @@ vim.o.wildignorecase = true
 vim.o.cursorline     = true
 vim.o.shortmess      = 'aoOTIFc'
 vim.o.showmode       = false
+vim.o.showcmd        = false
 vim.o.ruler          = false
 vim.o.relativenumber = true
 vim.o.number         = true

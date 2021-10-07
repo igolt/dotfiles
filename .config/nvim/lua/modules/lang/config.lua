@@ -9,6 +9,7 @@ config.nvim_treesitter = function()
       'lua',
       'javascript',
       'typescript',
+      'tsx',
       'php'
     },
     highlight = {enable = true},
@@ -26,10 +27,11 @@ config.nvim_treesitter = function()
           ['ic'] = '@class.inner',
         }
       }
+    },
+    matchup = {
+      enable = true,
+      disable = {'c', 'cpp'}
     }
   }
-
-  local parser_configs = require('nvim-treesitter.parsers').get_parser_configs()
-  parser_configs.typescript.used_by = "typescriptreact"
 end
 return config

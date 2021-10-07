@@ -1,32 +1,66 @@
 local ui = {}
 local conf = require('modules.ui.config')
 
-ui['gruvbox-community/gruvbox'] = {
-  opt = true,
-  config = conf.gruvbox
+local colorscheme_list = {
+  gruvbox = {
+    git = 'gruvbox-community/gruvbox',
+    packer_config = {
+      config = conf.gruvbox
+    }
+  },
+
+  ['zephyr-nvim'] = {
+    git = 'glepnir/zephyr-nvim',
+    packer_config = {
+      config = [[vim.cmd('colorscheme zephyr')]]
+    }
+  },
+
+  ['gruvbox-material'] = {
+    git = 'sainnhe/gruvbox-material',
+    packer_config = {
+      config = [[vim.cmd('colorscheme gruvbox-material')]]
+    },
+  },
+
+  ['material.nvim'] = {
+    git = 'marko-cerovac/material.nvim',
+    packer_config = {
+      config = conf.material_nvim
+    }
+  },
+
+  ['vscode.nvim'] = {
+    git = 'Mofiqul/vscode.nvim',
+    packer_config = {
+      config = function ()
+        vim.g.vscode_style = 'dark'
+        vim.cmd [[colorscheme vscode]]
+      end
+    }
+  },
+
+  ['omni.vim'] = {
+    git = 'yonlu/omni.vim',
+    packer_config = {
+      config = function ()
+        vim.cmd [['colorscheme omni']]
+      end
+    }
+  }
 }
 
-ui['glepnir/zephyr-nvim'] = {
-  opt = true,
-  config = [[vim.cmd('colorscheme zephyr')]]
-}
 
-ui['sainnhe/gruvbox-material'] = {
-  config = [[vim.cmd('colorscheme gruvbox-material')]]
-}
+local function set_colorscheme(colorscheme)
+  for cs, value in pairs(colorscheme_list) do
+    local packer_config = value.packer_config
 
-ui['marko-cerovac/material.nvim'] = {
-  opt = true,
-  config = conf.material_nvim
-}
-
-ui['Mofiqul/vscode.nvim'] = {
-  opt = true,
-  config = function ()
-    vim.g.vscode_style = 'dark'
-    vim.cmd [[colorscheme vscode]]
+    packer_config.opt = cs ~= colorscheme
+    ui[value.git] = packer_config
   end
-}
+end
+
+set_colorscheme('gruvbox-material')
 
 ui['akinsho/nvim-bufferline.lua'] = {
   config = conf.nvim_bufferline,

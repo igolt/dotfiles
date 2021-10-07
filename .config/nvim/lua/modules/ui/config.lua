@@ -63,7 +63,7 @@ function config.material_nvim()
     selection = '#4f5470'
   }
 
-  require('material').set()
+  vim.cmd [[colorscheme material]]
 end
 
 function config.lualine()
