@@ -1,28 +1,5 @@
 local config = {}
 
-function config.formatter()
-  local api = vim.api
-  local fn = vim.fn
-  local prettierd = {
-    function()
-      return {
-        exe = "prettierd",
-        args = {fn.fnameescape(api.nvim_buf_get_name(0))},
-        stdin = true
-      }
-    end
-  }
-
-  require('formatter').setup({
-      logging = false,
-      filetype = {
-        javascript = prettierd,
-        typescript = prettierd,
-        typescriptreact = prettierd,
-      }
-    })
-end
-
 function config.nvim_compe()
   require'compe'.setup {
     enabled = true,
@@ -98,18 +75,34 @@ function config.autopairs()
 
   autopairs.add_rules {
     Rule(' ', ' ')
-      :with_pair(function (opts)
-        local pair = opts.line:sub(opts.col, opts.col + 1)
-        return vim.tbl_contains({ '()', '[]', '{}'}, pair)
-      end),
-      Rule("**", "**", "markdown"),
-      Rule("_", "_", "markdown"),
-    }
+    :with_pair(function (opts)
+      local pair = opts.line:sub(opts.col - 1, opts.col)
+      return vim.tbl_contains({ '()', '[]', '{}' }, pair)
+    end),
+    Rule('( ', ' )')
+    :with_pair(function() return false end)
+    :with_move(function(opts)
+      return opts.prev_char:match('.%)') ~= nil
+    end)
+    :use_key(')'),
+    Rule('{ ', ' }')
+    :with_pair(function() return false end)
+    :with_move(function(opts)
+      return opts.prev_char:match('.%}') ~= nil
+    end)
+    :use_key('}'),
+    Rule('[ ', ' ]')
+    :with_pair(function() return false end)
+    :with_move(function(opts)
+      return opts.prev_char:match('.%]') ~= nil
+    end)
+    :use_key(']')
+  }
 
-    require('nvim-autopairs.completion.compe').setup {
-      map_cr = true,
-      map_complete = true
-    }
-  end
+  require('nvim-autopairs.completion.compe').setup {
+    map_cr = true,
+    map_complete = true
+  }
+end
 
-  return config
+return config

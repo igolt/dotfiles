@@ -3,6 +3,15 @@ local lspconfig = require('lspconfig')
 local sumneko_root_path = ('%s/Downloads/lua-language-server'):format(home_path)
 local sumneko_binary = ('%s/bin/Linux/lua-language-server'):format(sumneko_root_path)
 local sumneko_main = ('%s/main.lua'):format(sumneko_root_path)
+local nls = require('null-ls')
+
+nls.config {
+  save_after_format = false,
+  sources = {
+    nls.builtins.diagnostics.eslint_d
+  }
+}
+
 local servers = {
   clangd = {
     cmd = {
@@ -44,6 +53,7 @@ local servers = {
   pyright = {},
   intelephense = {},
   rust_analyzer = {},
+  ['null-ls'] = {}
 }
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()

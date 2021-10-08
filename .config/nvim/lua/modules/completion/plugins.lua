@@ -1,6 +1,10 @@
 local completion = {}
 local conf = require('modules.completion.config')
 
+completion['jose-elias-alvarez/nvim-lsp-ts-utils'] = {}
+
+completion['jose-elias-alvarez/null-ls.nvim'] = {}
+
 completion['neovim/nvim-lspconfig'] = {
   event = 'BufReadPre',
   config = conf.nvim_lsp
