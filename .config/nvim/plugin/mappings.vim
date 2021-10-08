@@ -19,10 +19,6 @@ nnoremap <leader>S :%s/
 
 nnoremap <silent>=f gg=G
 
-" Terminal
-nnoremap <silent><C-u> :ToggleTerm<cr>
-tnoremap <silent><C-u> <C-\><C-n><cmd>ToggleTerm<cr>
-
 nnoremap <C-p> <cmd>Telescope project_files<cr>
 nnoremap <leader>td <cmd>Telescope vimdots<cr>
 
