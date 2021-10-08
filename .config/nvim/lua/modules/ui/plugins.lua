@@ -89,6 +89,10 @@ ui['akinsho/nvim-bufferline.lua'] = {
   requires = 'kyazdani42/nvim-web-devicons'
 }
 
+ui['onsails/lspkind-nvim'] = {
+  requires = 'kyazdani42/nvim-web-devicons',
+}
+
 ui['kyazdani42/nvim-tree.lua'] = {
   cmd = {'NvimTreeToggle', 'NvimTreeOpen'},
   config = conf.nvim_tree,

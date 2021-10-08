@@ -56,16 +56,6 @@ local servers = {
   ['null-ls'] = {}
 }
 
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities.textDocument.completion.completionItem.snippetSupport = true
-capabilities.textDocument.completion.completionItem.resolveSupport = {
-  properties = {
-    'documentation',
-    'detail',
-    'additionalTextEdits'
-  }
-}
-
 local on_attach = function(_, bufnr)
   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
   local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
@@ -91,34 +81,6 @@ local on_attach = function(_, bufnr)
   buf_set_keymap('v', '<leader>f', '<cmd>lua vim.lsp.buf.range_formatting()<CR>', opts)
 end
 
-require("vim.lsp.protocol").CompletionItemKind = {
-  " Text", -- Text
-  " Method", -- Method
-  "ƒ Function", -- Function
-  " Constructor", -- Constructor
-  "識 Field", -- Field
-  " Variable", -- Variable
-  " Class", -- Class
-  "ﰮ Interface", -- Interface
-  " Module", -- Module
-  " Property", -- Property
-  " Unit", -- Unit
-  " Value", -- Value
-  "了 Enum", -- Enum
-  " Keyword", -- Keyword
-  " Snippet", -- Snippet
-  " Color", -- Color
-  " File", -- File
-  "渚 Reference", -- Reference
-  " Folder", -- Folder
-  " Enum", -- Enum
-  " Constant", -- Constant
-  " Struct", -- Struct
-  "鬒 Event", -- Event
-  "Ψ Operator", -- Operator
-  " Type Parameter", -- TypeParameter
-}
-
 vim.fn.sign_define('LspDiagnosticsSignHint'       , {text = ' '})
 vim.fn.sign_define('LspDiagnosticsSignError'      , {text = ' '})
 vim.fn.sign_define('LspDiagnosticsSignWarning'    , {text = ' '})
@@ -126,6 +88,6 @@ vim.fn.sign_define('LspDiagnosticsSignInformation', {text = ' '})
 
 for lang_server, config in pairs(servers) do
   config.on_attach = on_attach
-  config.capabilities = capabilities
+  config.capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
   lspconfig[lang_server].setup(config)
 end

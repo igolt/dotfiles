@@ -1,31 +1,30 @@
 local config = {}
 
-function config.nvim_compe()
-  require'compe'.setup {
-    enabled = true,
-    debug = false,
-    min_length = 1,
-    preselect = 'disable',
-    throttle_time = 80,
-    source_timeout = 200,
-    resolve_timeout = 800,
-    incomplete_delay = 400,
-    max_abbr_width = 100,
-    max_kind_width = 100,
-    max_menu_width = 100,
-    documentation = true,
+function config.nvim_cmp()
+  local cmp = require'cmp'
+  local lspkind = require('lspkind')
 
-    source = {
-      calc = true,
-      path = true,
-      vsnip = true,
-      buffer = true,
-      nvim_lsp = true,
-      nvim_lua = true,
-      tags = false,
-      spell = false,
-      snippets_nvim = false,
+  cmp.setup {
+    formatting = {
+      format = lspkind.cmp_format(),
     },
+    snippet = {
+      expand = function(args)
+        vim.fn["vsnip#anonymous"](args.body)
+      end,
+    },
+    mapping = {
+      ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+      ['<C-f>'] = cmp.mapping.scroll_docs(4),
+      ['<C-Space>'] = cmp.mapping.complete(),
+      ['<C-e>'] = cmp.mapping.close(),
+      ['<CR>'] = cmp.mapping.confirm({ select = false }),
+    },
+    sources = {
+      { name = 'nvim_lsp' },
+      { name = 'vsnip' },
+      { name = 'buffer' },
+    }
   }
 end
 
@@ -99,10 +98,16 @@ function config.autopairs()
     :use_key(']')
   }
 
-  require('nvim-autopairs.completion.compe').setup {
+  require("nvim-autopairs.completion.cmp").setup({
     map_cr = true,
-    map_complete = true
-  }
+    map_complete = true,
+    auto_select = true,
+    insert = false,
+    map_char = {
+      all = '(',
+      tex = '{'
+    }
+  })
 end
 
 return config
