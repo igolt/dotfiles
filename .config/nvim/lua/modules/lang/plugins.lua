@@ -1,21 +1,22 @@
-local lang = {}
 local conf = require('modules.lang.config')
 
-lang['nvim-treesitter/nvim-treesitter'] = {
-  run = ':TSUpdate',
-  event = 'BufEnter',
-  config = conf.nvim_treesitter,
-}
+local lang = {
+  ['windwp/nvim-ts-autotag'] = {
+    after = 'nvim-treesitter',
+    config = function ()
+      require('nvim-ts-autotag').setup()
+    end
+  },
 
-lang['nvim-treesitter/nvim-treesitter-textobjects'] = {
-  after = 'nvim-treesitter'
-}
+  ['nvim-treesitter/nvim-treesitter-textobjects'] = {
+    after = 'nvim-treesitter'
+  },
 
-lang['windwp/nvim-ts-autotag'] = {
-  after = 'nvim-treesitter',
-  config = function ()
-    require('nvim-ts-autotag').setup()
-  end
+  ['nvim-treesitter/nvim-treesitter'] = {
+    run = ':TSUpdate',
+    event = 'BufEnter',
+    config = conf.nvim_treesitter,
+  },
 }
 
 return lang

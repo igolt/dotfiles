@@ -1,5 +1,21 @@
 local config = {}
 
+function config.nvim_colorizer()
+  require('colorizer').setup({
+    'sh',
+    'yml',
+    'yaml',
+    'html',
+    'javascript',
+    'css',
+    'scss',
+    'conf',
+    'dosini'
+  }, {
+    mode = 'background'
+  })
+end
+
 function config.nvim_tree()
   vim.g.nvim_tree_hide_dotfiles = 1
   vim.g.nvim_tree_indent_markers = 1

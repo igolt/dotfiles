@@ -1,34 +1,30 @@
-local completion = {}
 local conf = require('modules.completion.config')
 
-completion['jose-elias-alvarez/nvim-lsp-ts-utils'] = {}
+local completion = {
+  ['neovim/nvim-lspconfig'] = {
+    event = 'BufReadPre',
+    config = conf.nvim_lsp
+  },
 
-completion['jose-elias-alvarez/null-ls.nvim'] = {}
+  ['windwp/nvim-autopairs'] = {config = conf.autopairs},
+  ['hrsh7th/vim-vsnip'] = {config = conf.vim_vsnip},
+  ['hrsh7th/cmp-buffer'] = {},
+  ['hrsh7th/cmp-vsnip'] = {},
 
-completion['neovim/nvim-lspconfig'] = {
-  event = 'BufReadPre',
-  config = conf.nvim_lsp
-}
+  ['glepnir/lspsaga.nvim'] = {},
 
-completion['glepnir/lspsaga.nvim'] = {}
+  ['jose-elias-alvarez/null-ls.nvim'] = {},
+  ['jose-elias-alvarez/nvim-lsp-ts-utils'] = {},
 
-completion['hrsh7th/cmp-vsnip'] = {}
-completion['hrsh7th/cmp-nvim-lsp'] = {}
-completion['hrsh7th/cmp-buffer'] = {}
-completion['hrsh7th/nvim-cmp'] = {config = conf.nvim_cmp}
-
-completion['hrsh7th/vim-vsnip'] = {config = conf.vim_vsnip}
-
-completion['windwp/nvim-autopairs'] = {config = conf.autopairs}
-
-completion['nvim-telescope/telescope.nvim'] = {
-  cmd = 'Telescope',
-  config = conf.telescope,
-  requires = {
-    {'nvim-lua/popup.nvim', opt = true},
-    {'nvim-lua/plenary.nvim', opt = true},
-    {'nvim-telescope/telescope-fzy-native.nvim', opt = true},
-  }
+  ['nvim-telescope/telescope.nvim'] = {
+    cmd = 'Telescope',
+    config = conf.telescope,
+    requires = {
+      {'nvim-lua/popup.nvim', opt = true},
+      {'nvim-lua/plenary.nvim', opt = true},
+      {'nvim-telescope/telescope-fzy-native.nvim', opt = true},
+    }
+  },
 }
 
 return completion

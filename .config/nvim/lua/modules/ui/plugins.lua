@@ -1,5 +1,41 @@
-local ui = {}
 local conf = require('modules.ui.config')
+
+local ui = {
+  ['norcalli/nvim-colorizer.lua'] = {
+    config = conf.nvim_colorizer
+  },
+
+  ['lewis6991/gitsigns.nvim'] = {
+    event = {'BufRead','BufNewFile'},
+    config = conf.gitsigns,
+    requires = {'nvim-lua/plenary.nvim', opt=true}
+  },
+
+  ['lukas-reineke/indent-blankline.nvim'] = {
+    event = 'BufRead',
+    config = conf.indent_blakline
+  },
+
+  ['hoob3rt/lualine.nvim'] = {
+    config = conf.lualine,
+    requires = {'kyazdani42/nvim-web-devicons', opt = true},
+  },
+
+  ['kyazdani42/nvim-tree.lua'] = {
+    cmd = {'NvimTreeToggle', 'NvimTreeOpen'},
+    config = conf.nvim_tree,
+    requires = 'kyazdani42/nvim-web-devicons'
+  },
+
+  ['onsails/lspkind-nvim'] = {
+    requires = 'kyazdani42/nvim-web-devicons',
+  },
+
+  ['akinsho/nvim-bufferline.lua'] = {
+    config = conf.nvim_bufferline,
+    requires = 'kyazdani42/nvim-web-devicons'
+  },
+}
 
 local colorscheme_list = {
   tokyonight = {
@@ -72,7 +108,6 @@ local colorscheme_list = {
   }
 }
 
-
 local function set_colorscheme(colorscheme)
   for cs, value in pairs(colorscheme_list) do
     local packer_config = value.packer_config
@@ -83,47 +118,5 @@ local function set_colorscheme(colorscheme)
 end
 
 set_colorscheme('gruvbox-material')
-
-ui['akinsho/nvim-bufferline.lua'] = {
-  config = conf.nvim_bufferline,
-  requires = 'kyazdani42/nvim-web-devicons'
-}
-
-ui['onsails/lspkind-nvim'] = {
-  requires = 'kyazdani42/nvim-web-devicons',
-}
-
-ui['kyazdani42/nvim-tree.lua'] = {
-  cmd = {'NvimTreeToggle', 'NvimTreeOpen'},
-  config = conf.nvim_tree,
-  requires = 'kyazdani42/nvim-web-devicons'
-}
-
-ui['hoob3rt/lualine.nvim'] = {
-  config = conf.lualine,
-  requires = {'kyazdani42/nvim-web-devicons', opt = true},
-}
-
-ui['lukas-reineke/indent-blankline.nvim'] = {
-  event = 'BufRead',
-  config = conf.indent_blakline
-}
-
-ui['lewis6991/gitsigns.nvim'] = {
-  event = {'BufRead','BufNewFile'},
-  config = conf.gitsigns,
-  requires = {'nvim-lua/plenary.nvim', opt=true}
-}
-
-ui['norcalli/nvim-colorizer.lua'] = {
-  config = function ()
-    require('colorizer').setup({
-      'sh', 'yml', 'yaml', 'html', 'javascript', 'css', 'scss', 'conf',
-      'dosini'
-    }, {
-      mode = 'background'
-    })
-  end
-}
 
 return ui
