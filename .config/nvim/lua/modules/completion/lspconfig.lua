@@ -78,7 +78,7 @@ local on_attach = function(_, bufnr)
   buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
   buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
   buf_set_keymap('n', '<leader>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
-  buf_set_keymap('v', '<leader>f', '<cmd>lua vim.lsp.buf.range_formatting()<CR>', opts)
+  buf_set_keymap('x', '<leader>f', '<cmd>lua vim.lsp.buf.range_formatting({tabSize = vim.o.ts})<CR>', opts)
 end
 
 vim.fn.sign_define('LspDiagnosticsSignHint'       , {text = ' '})
