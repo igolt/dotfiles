@@ -37,7 +37,7 @@ complete -c pkill
 alias yarn='yarn --use-yarnrc "$XDG_CONFIG_HOME/yarn/config"'
 
 # Managing dotfiles
-alias dotfiles="git --git-dir='$HOME/.dotfiles' --work-tree='$HOME'"
+alias dotfiles="git --git-dir='$XDG_DATA_HOME/dotfiles' --work-tree='$HOME'"
 alias d='dotfiles'
 
 # Bookmarks
