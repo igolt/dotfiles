@@ -8,6 +8,7 @@ local completion = {
 
   ['hrsh7th/cmp-nvim-lsp'] = {},
   ['hrsh7th/cmp-buffer'] = {},
+  ['hrsh7th/cmp-path'] = {},
   ['hrsh7th/cmp-vsnip'] = {},
   ['hrsh7th/nvim-cmp'] = {config = conf.nvim_cmp},
   ['hrsh7th/vim-vsnip'] = {config = conf.vim_vsnip},

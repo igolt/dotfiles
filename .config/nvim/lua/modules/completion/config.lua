@@ -21,9 +21,10 @@ function config.nvim_cmp()
       ['<CR>'] = cmp.mapping.confirm({ select = false }),
     },
     sources = {
-      { name = 'nvim_lsp' },
+      { name = 'path' },
       { name = 'vsnip' },
       { name = 'buffer' },
+      { name = 'nvim_lsp' },
     }
   }
 end
