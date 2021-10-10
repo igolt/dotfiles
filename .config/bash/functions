@@ -1,3 +1,5 @@
+# =========== FUNCTIONS =========== #
+
 mkclassf() {
     local DIR="$1"
     local SLIDES_FOLDER="$DIR/Slides"

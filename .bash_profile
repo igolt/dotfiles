@@ -4,8 +4,6 @@
 
 export PATH="$HOME/.local/bin:$PATH"
 
-export SCREEN_RES="1920x1080"
-
 # Default programs
 export VISUAL="nvim"
 export BROWSER="brave"
@@ -71,5 +69,8 @@ export TODO_FILE="$XDG_DATA_HOME/todo.md"
 
 export C_INCLUDE_PATH="$HOME/.local/include"
 export LD_LIBRARY_PATH="$HOME/.local/lib/goat"
+
+export SCREEN_RES="1920x1080"
+export _DOTSDIR="$XDG_DATA_HOME/dotfiles"
 
 [ -f ~/.bashrc ] && . ~/.bashrc
