@@ -1,4 +1,4 @@
-local fn,uv,api = vim.fn,vim.loop,vim.api
+local fn, uv, api = vim.fn,vim.loop,vim.api
 local vim_path = require('core.global').vim_path
 local data_dir = require('core.global').data_dir
 local modules_dir = vim_path .. '/lua/modules'
@@ -93,6 +93,11 @@ function plugins.setup()
   vim.cmd [[command! PackerClean lua require('core.pack').clean()]]
   vim.cmd [[autocmd User PackerComplete lua require('core.pack').magic_compile()]]
   vim.cmd [[command! PackerStatus  lua require('packer').status()]]
+
+  local remap = vim.api.nvim_set_keymap;
+
+  remap('n', '<leader>ps', '<cmd>PackerSync<cr>', {noremap = true})
+  remap('n', '<leader>pc', '<cmd>PackerSync<cr>', {noremap = true})
 end
 
 return plugins
