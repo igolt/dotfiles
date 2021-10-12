@@ -81,13 +81,51 @@ local on_attach = function(_, bufnr)
   buf_set_keymap('x', '<leader>f', '<cmd>lua vim.lsp.buf.range_formatting({tabSize = vim.o.ts})<CR>', opts)
 end
 
+require("vim.lsp.protocol").CompletionItemKind = {
+  " Text", -- Text
+  " Method", -- Method
+  "ƒ Function", -- Function
+  " Constructor", -- Constructor
+  "識 Field", -- Field
+  " Variable", -- Variable
+  " Class", -- Class
+  "ﰮ Interface", -- Interface
+  " Module", -- Module
+  " Property", -- Property
+  " Unit", -- Unit
+  " Value", -- Value
+  "了 Enum", -- Enum
+  " Keyword", -- Keyword
+  " Snippet", -- Snippet
+  " Color", -- Color
+  " File", -- File
+  "渚 Reference", -- Reference
+  " Folder", -- Folder
+  " Enum", -- Enum
+  " Constant", -- Constant
+  " Struct", -- Struct
+  "鬒 Event", -- Event
+  "Ψ Operator", -- Operator
+  " Type Parameter", -- TypeParameter
+}
+
 vim.fn.sign_define('LspDiagnosticsSignHint'       , {text = ' '})
 vim.fn.sign_define('LspDiagnosticsSignError'      , {text = ' '})
 vim.fn.sign_define('LspDiagnosticsSignWarning'    , {text = ' '})
 vim.fn.sign_define('LspDiagnosticsSignInformation', {text = ' '})
 
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+capabilities.textDocument.completion.completionItem.resolveSupport = {
+  properties = {
+    'documentation',
+    'detail',
+    'additionalTextEdits'
+  }
+}
+
 for lang_server, config in pairs(servers) do
   config.on_attach = on_attach
-  config.capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+  config.capabilities = capabilities
   lspconfig[lang_server].setup(config)
 end

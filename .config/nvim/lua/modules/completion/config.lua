@@ -1,31 +1,31 @@
 local config = {}
 
-function config.nvim_cmp()
-  local cmp = require'cmp'
-  local lspkind = require('lspkind')
+function config.nvim_compe()
+  require'compe'.setup {
+    enabled = true,
+    debug = false,
+    min_length = 1,
+    preselect = 'disable',
+    throttle_time = 80,
+    source_timeout = 200,
+    resolve_timeout = 800,
+    incomplete_delay = 400,
+    max_abbr_width = 100,
+    max_kind_width = 100,
+    max_menu_width = 100,
+    documentation = true,
 
-  cmp.setup {
-    formatting = {
-      format = lspkind.cmp_format(),
+    source = {
+      calc = true,
+      path = true,
+      vsnip = true,
+      buffer = true,
+      nvim_lsp = true,
+      nvim_lua = true,
+      tags = false,
+      spell = false,
+      snippets_nvim = false,
     },
-    snippet = {
-      expand = function(args)
-        vim.fn["vsnip#anonymous"](args.body)
-      end,
-    },
-    mapping = {
-      ['<C-d>'] = cmp.mapping.scroll_docs(-4),
-      ['<C-f>'] = cmp.mapping.scroll_docs(4),
-      ['<C-Space>'] = cmp.mapping.complete(),
-      ['<C-e>'] = cmp.mapping.close(),
-      ['<CR>'] = cmp.mapping.confirm({ select = false }),
-    },
-    sources = {
-      { name = 'path' },
-      { name = 'vsnip' },
-      { name = 'buffer' },
-      { name = 'nvim_lsp' },
-    }
   }
 end
 
@@ -42,7 +42,7 @@ function config.telescope()
   if not packer_plugins['plenary.nvim'].loaded then
     vim.cmd [[packadd plenary.nvim]]
     vim.cmd [[packadd popup.nvim]]
-    vim.cmd [[packadd telescope-fzy-native.nvim]]
+    vim.cmd [[packadd telescope-fzf-native.nvim]]
   end
 
   require('telescope').setup {
@@ -55,14 +55,16 @@ function config.telescope()
       },
     },
     extensions = {
-      fzy_native = {
-        override_generic_sorter = false,
+      fzf = {
+        fuzzy = true,
+        override_generic_sorter = true,
         override_file_sorter = true,
+        case_mode = 'smart_case'
       }
     }
   }
 
-  require('telescope').load_extension('fzy_native')
+  require('telescope').load_extension('fzf')
   require('telescope').load_extension('vimdots')
   require('telescope').load_extension('project_files')
 end
@@ -99,16 +101,15 @@ function config.autopairs()
     :use_key(']')
   }
 
-  require("nvim-autopairs.completion.cmp").setup({
-    map_cr = true,
-    map_complete = true,
-    auto_select = true,
-    insert = false,
-    map_char = {
-      all = '(',
-      tex = '{'
-    }
-  })
+  require("nvim-autopairs.completion.compe").setup({
+    map_cr = true, --  map <CR> on insert mode
+    map_complete = true, -- it will auto insert `(` (map_char) after select function or method item
+    auto_select = false,  -- auto select first item
+    map_char = { -- modifies the function or method delimiter by filetypes
+    all = '(',
+    tex = '{'
+  }
+})
 end
 
 return config

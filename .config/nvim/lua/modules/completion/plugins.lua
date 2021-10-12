@@ -6,14 +6,15 @@ local completion = {
     config = conf.nvim_lsp
   },
 
-  ['hrsh7th/cmp-nvim-lsp'] = {},
-  ['hrsh7th/cmp-buffer'] = {},
-  ['hrsh7th/cmp-path'] = {},
-  ['hrsh7th/cmp-vsnip'] = {},
-  ['hrsh7th/nvim-cmp'] = {config = conf.nvim_cmp},
-  ['hrsh7th/vim-vsnip'] = {config = conf.vim_vsnip},
+  ['mhartington/formatter.nvim'] = {
+    event = 'BufReadPre',
+    config = conf.formatter
+  },
 
-  ['windwp/nvim-autopairs'] = {config = conf.autopairs},
+  ['hrsh7th/nvim-compe'] = {event = 'InsertEnter', config = conf.nvim_compe,},
+  ['hrsh7th/vim-vsnip'] = {after = 'nvim-compe', config = conf.vim_vsnip},
+
+  ['windwp/nvim-autopairs'] = {after = 'nvim-compe', config = conf.autopairs},
 
   ['glepnir/lspsaga.nvim'] = {},
 
@@ -26,7 +27,10 @@ local completion = {
     requires = {
       {'nvim-lua/popup.nvim', opt = true},
       {'nvim-lua/plenary.nvim', opt = true},
-      {'nvim-telescope/telescope-fzy-native.nvim', opt = true},
+      {
+        'nvim-telescope/telescope-fzf-native.nvim',
+        run = 'make'
+      },
     }
   },
 }
