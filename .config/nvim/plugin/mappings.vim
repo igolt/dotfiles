@@ -4,6 +4,8 @@ nnoremap <silent><C-j> :wincmd j<cr>
 nnoremap <silent><C-k> :wincmd k<cr>
 nnoremap <silent><C-l> :wincmd l<cr>
 
+nnoremap Q <Nop>
+
 nnoremap <Esc> <Cmd>noh<Cr>
 nnoremap <leader>w <cmd>w<cr>
 nnoremap <leader>q <cmd>q<cr>
