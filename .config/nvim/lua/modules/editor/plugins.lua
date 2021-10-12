@@ -6,6 +6,11 @@ local editor = {
     config = conf.vim_cursorwod
   },
 
+  ['junegunn/vim-easy-align'] = {
+    event = 'BufRead',
+    config = conf.vim_easy_align
+  },
+
   ['tpope/vim-repeat'] = {},
   ['tpope/vim-surround'] = {event = 'BufRead'},
   ['tpope/vim-commentary'] = {event = 'BufRead'},

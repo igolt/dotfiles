@@ -37,4 +37,11 @@ function config.vim_cursorwod()
   vim.api.nvim_command('augroup END')
 end
 
+function config.vim_easy_align()
+  local remap = vim.api.nvim_set_keymap;
+
+  remap('n', 'ga', '<Plug>(EasyAlign)', {})
+  remap('x', 'ga', '<Plug>(EasyAlign)', {})
+end
+
 return config

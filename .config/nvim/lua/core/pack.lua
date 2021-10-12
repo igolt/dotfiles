@@ -33,7 +33,10 @@ function Packer:load_packer()
   end
   packer.init({
     git = {clone_timeout = 120},
-    disable_commands = true
+    disable_commands = true,
+    display = {
+      open_fn = require('packer.util').float
+    }
   })
   packer.reset()
   self:load_plugins()

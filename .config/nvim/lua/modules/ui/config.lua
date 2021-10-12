@@ -36,7 +36,7 @@ function config.nvim_tree()
     open_on_tab = true,
     hijack_cursor = true,
     update_cwd = true,
-    lsp_diagnostics = true,
+    diagnostics = {enable = true},
     update_focused_file = {
       enable = true,
     },
