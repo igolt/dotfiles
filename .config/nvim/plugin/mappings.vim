@@ -7,7 +7,7 @@ nnoremap <silent><C-l> :wincmd l<cr>
 nnoremap <Esc> <Cmd>noh<Cr>
 nnoremap <leader>w <cmd>w<cr>
 nnoremap <leader>q <cmd>q<cr>
-nnoremap FQ <cmd>qa<cr>
+nnoremap <leader>FQ <cmd>qa<cr>
 nnoremap du 0D
 nnoremap Y y$
 

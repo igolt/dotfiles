@@ -89,7 +89,7 @@ function config.lualine()
       theme = 'gruvbox_material',
       component_separators = {'|', '|'},
       section_separators = {'', ''},
-      disabled_filetypes = {'NvimTree'}
+      disabled_filetypes = {'NvimTree', 'startify'}
     },
     sections = {
       lualine_a = {'mode'},

@@ -1,6 +1,11 @@
 local conf = require('modules.editor.config')
 
 local editor = {
+  ['itchyny/vim-cursorword'] = {
+    event = {'BufReadPre','BufNewFile'},
+    config = conf.vim_cursorwod
+  },
+
   ['tpope/vim-repeat'] = {},
   ['tpope/vim-surround'] = {event = 'BufRead'},
   ['tpope/vim-commentary'] = {event = 'BufRead'},
