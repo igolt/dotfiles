@@ -100,7 +100,7 @@ function plugins.setup()
   local remap = vim.api.nvim_set_keymap;
 
   remap('n', '<leader>ps', '<cmd>PackerSync<cr>', {noremap = true})
-  remap('n', '<leader>pc', '<cmd>PackerSync<cr>', {noremap = true})
+  remap('n', '<leader>pc', '<cmd>PackerCompile<cr>', {noremap = true})
 end
 
 return plugins
