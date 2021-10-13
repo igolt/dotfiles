@@ -64,6 +64,9 @@ export PYTHONSTARTUP="$XDG_CONFIG_HOME/python/init.py"
 # wget
 export WGETRC="$XDG_CONFIG_HOME/wget/wgetrc"
 
+# docker
+export DOCKER_CONFIG="$XDG_CONFIG_HOME"/docker
+
 # todo file
 export TODO_FILE="$XDG_DATA_HOME/todo.md"
 
