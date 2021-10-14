@@ -48,7 +48,6 @@ local servers = {
   },
   html = {},
   cssls = {},
-  tsserver = {},
   vimls = {},
   pyright = {},
   intelephense = {},
@@ -56,7 +55,7 @@ local servers = {
   ['null-ls'] = {}
 }
 
-local on_attach = function(_, bufnr)
+local set_keymappings = function(_, bufnr)
   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
   local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
 
@@ -125,7 +124,25 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
 }
 
 for lang_server, config in pairs(servers) do
-  config.on_attach = on_attach
+  config.on_attach = set_keymappings
   config.capabilities = capabilities
   lspconfig[lang_server].setup(config)
 end
+
+-- configure tsserver separatately
+lspconfig.tsserver.setup {
+  on_attach = function (client, _)
+    client.resolved_capabilities.document_formatting = false
+    client.resolved_capabilities.document_range_formatting = false
+
+    local ts_utils = require('nvim-lsp-ts-utils')
+
+    ts_utils.setup {
+      debug = false,
+      disable_commands = false,
+      enable_import_on_completion = true,
+    }
+
+    ts_utils.setup_client(client)
+  end
+}

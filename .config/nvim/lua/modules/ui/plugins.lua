@@ -1,7 +1,7 @@
 local conf = require('modules.ui.config')
 
 local ui = {
-  ['mhinz/vim-startify'] = {},
+  ['glepnir/dashboard-nvim'] = {config = conf.dashboard},
 
   ['norcalli/nvim-colorizer.lua'] = {
     config = conf.nvim_colorizer

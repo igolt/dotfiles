@@ -6,6 +6,8 @@ nnoremap <silent><C-l> :wincmd l<cr>
 
 nnoremap Q <Nop>
 
+nnoremap gp `[v`]
+
 nnoremap <Esc> <Cmd>noh<Cr>
 nnoremap <leader>w <cmd>w<cr>
 nnoremap <leader>q <cmd>q<cr>
