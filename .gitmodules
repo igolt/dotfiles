@@ -1,0 +1,4 @@
+[submodule "nvim-dots"]
+	path = .config/nvim
+	url = git@github.com:igolt/nvim-dots.git
+	branch = main
