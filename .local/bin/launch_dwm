@@ -2,5 +2,6 @@
 
 setwal
 dwm_panel
+batsignal &
 
 exec dwm
