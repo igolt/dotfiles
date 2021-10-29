@@ -17,7 +17,7 @@
 
     horizontal_padding = 8
 
-    frame_width = 1
+    frame_width = 4
 
 
     separator_color = frame
@@ -79,7 +79,7 @@
 
     verbosity = mesg
 
-    corner_radius = 0
+    corner_radius = 5
 
     ignore_dbusclose = false
 
@@ -102,13 +102,15 @@
     context = ctrl+shift+period
 
 [urgency_low]
-    background = "#2f3131"
-    foreground = "#ffffff"
+    background = "#282828"
+    foreground = "#FDF1C7"
+    frame_color = "#928374"
     timeout = 10
 
 [urgency_normal]
-    background = "#000000"
-    foreground = "#ffffff"
+    background = "#282828"
+    foreground = "#FDF1C7"
+    frame_color = "#928374"
     timeout = 10
 
 [urgency_critical]
