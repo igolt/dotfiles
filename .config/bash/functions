@@ -75,7 +75,7 @@ csource() {
     [[ -r $1 ]] || { printf "File %s does not exist or is not readable\n" "$1" >&2; return 1; }
     local OUTPUT_PATH=${TMPDIR:-/tmp}/${1##*/};
     gcc "$1" -o "$OUTPUT_PATH" && "$OUTPUT_PATH";
-    rm "$OUTPUT_PATH";
+    rm -f "$OUTPUT_PATH";
     return 0;
 }
 
