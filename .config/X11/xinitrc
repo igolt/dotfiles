@@ -1,20 +1,17 @@
 #!/bin/sh
 
-xprofile="${XPROFILE:-$HOME/.Xresources}"
-userresources="${XRESOURCES:-$HOME/.Xresources}"
-usermodmap="${XMODMAP:-$HOME/.Xmodmap}"
-sysresources=/etc/X11/xinit/.Xresources
 sysmodmap=/etc/X11/xinit/.Xmodmap
+usermodmap="${XMODMAP:-$HOME/.Xmodmap}"
+
+sysresources=/etc/X11/xinit/.Xresources
+userresources="${XRESOURCES:-$HOME/.Xresources}"
 
 # merge in defaults and keymaps
 
-[ -f $sysresources ] && xrdb -merge $sysresources
-
-[ -f $sysmodmap ] && xmodmap $sysmodmap
-
-[ -f "$userresources" ] && xrdb -merge "$userresources"
-
+[ -f "$sysmodmap" ] && xmodmap "$sysmodmap"
 [ -f "$usermodmap" ] && xmodmap "$usermodmap"
+[ -f "$sysresources" ] && xrdb -merge "$sysresources"
+[ -f "$userresources" ] && xrdb -merge "$userresources"
 
 # start some nice programs
 
@@ -28,4 +25,4 @@ fi
 pgrep -x dunst > /dev/null || dunst &
 pgrep -x picom > /dev/null || picom &
 
-launch_dwm
+exec launch_dwm
