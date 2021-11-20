@@ -3,13 +3,15 @@
 
     follow = mouse
 
-    geometry = "800x5-10+40"
+    width = (250, 500)
+    height = 300
+    origin = top-right
+    offset = 10x35
+
     indicate_hidden = yes
     shrink = yes
 
     transparency = 0
-
-    notification_height = 0
 
     separator_height = 2
 
@@ -75,10 +77,6 @@
 
     class = Dunst
 
-    startup_notification = false
-
-    verbosity = mesg
-
     corner_radius = 5
 
     ignore_dbusclose = false
@@ -91,15 +89,6 @@
 
 [experimental]
     per_monitor_dpi = false
-
-[shortcuts]
-
-
-    close = ctrl+space
-
-    close_all = ctrl+shift+space
-
-    context = ctrl+shift+period
 
 [urgency_low]
     background = "#282828"
@@ -118,3 +107,5 @@
     background = "#900000"
     foreground = "#ffffff"
     frame_color = "#ff0000"
+
+# vim:ft=dosini
