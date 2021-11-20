@@ -71,10 +71,12 @@ compile-dwm() {
 
 # Function from: https://wiki.archlinux.org/title/Bash/Functions
 csource() {
-    [[ $1 ]]    || { echo "Missing operand" >&2; return 1; }
-    [[ -r $1 ]] || { printf "File %s does not exist or is not readable\n" "$1" >&2; return 1; }
-    local OUTPUT_PATH=${TMPDIR:-/tmp}/${1##*/};
-    gcc "$1" -o "$OUTPUT_PATH" && "$OUTPUT_PATH";
+    local C_SOURCE=$1
+    [[ $C_SOURCE ]]    || { echo "Missing operand" >&2; return 1; }
+    [[ -r $C_SOURCE ]] || { printf "File %s does not exist or is not readable\n" "$C_SOURCE" >&2; return 1; }
+    local OUTPUT_PATH=${TMPDIR:-/tmp}/${C_SOURCE##*/};
+    shift
+    gcc "$C_SOURCE" "$@" -o "$OUTPUT_PATH" && "$OUTPUT_PATH";
     rm -f "$OUTPUT_PATH";
     return 0;
 }
