@@ -6,7 +6,7 @@ cdl() {
 
 # Cria um diretório pra uma disciplina
 mkclassf() {
-    mkdir -p "$1/00 - Informações da disciplina"
+    mkdir -p "$1/Informações da disciplina"
 }
 
 # Cria um diretório pra um tópico de uma disciplina
