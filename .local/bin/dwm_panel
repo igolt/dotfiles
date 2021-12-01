@@ -1,6 +1,6 @@
 #!/bin/sh
 
-if [ $(pgrep -x dwm_panel | wc -l) -ne 2 ]; then
+if [ $(pgrep -xc dwm_panel) -ne 1 ]; then
     echo "dwm_panel already running" >&2
     exit 1
 fi
