@@ -10,7 +10,7 @@ source /usr/share/git/completion/git-prompt.sh
 GIT_PS1_SHOWDIRTYSTATE="true"
 GIT_PS1_SHOWUNTRACKEDFILES="true"
 
-PS1='\[\e[36;1m\]\u@\[\e[1;35m\]\H> \[\e[0;91m\][ \[\e[1;34m\]\[\e[32;1m\]\w\[\e[1;37m\] ]$(__git_ps1 " \[\e[0;91m\](\[\e[33;1m\] %s\[\e[1;37m\])")\n\[\e[1;32m\]\$\[\e(B\e[m\] '
+PS1='\[\e[36;1m\]\u@\[\e[1;35m\]\H \[\e[0;91m\][ \[\e[1;34m\]\[\e[32;1m\]\w\[\e[1;37m\] ]$(__git_ps1 " \[\e[0;91m\](\[\e[33;1m\] %s\[\e[1;37m\])")\n\[\e[1;32m\]\$\[\e(B\e[m\] '
 
 # ======= SHELL BEHAVIOR ======== #
 
