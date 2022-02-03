@@ -77,7 +77,7 @@ export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$HOME/.local/lib/cbook"
 export SCREEN_RES="1920x1080"
 export _DOTSDIR="$XDG_DATA_HOME/dotfiles"
 
-PRIVATE_PROFILE="$XDG_CONFIG_DIR"/bash/private-profile
+PRIVATE_PROFILE=$XDG_CONFIG_HOME/bash/private-profile
 
 [ -f "$PRIVATE_PROFILE" ] && . "$PRIVATE_PROFILE"
 [ -f ~/.bashrc ] && . ~/.bashrc
