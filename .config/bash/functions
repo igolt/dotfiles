@@ -29,6 +29,25 @@ mktopicf() {
         && echo "$NUM" >| ".topicd"
 }
 
+zf() {
+    [ -z "$1" ] && return
+    local PDF=$(find -name "$1")
+    [ -z "$PDF" ] && {
+        echo "Could not find '$1'" >&2
+        return
+    }
+    zathura --fork "$PDF"
+}
+
+spdf() {
+    local PDF="`find -name *.pdf | fzf`"
+    local VIEWER="zathura --fork"
+
+    [ -n "$1" ] && VIEWER="$1"
+
+    [ -n "$PDF" ] && $VIEWER "$PDF"
+}
+
 man() {
     LESS_TERMCAP_md=$'\e[01;31m'    \
     LESS_TERMCAP_me=$'\e[0m'        \
@@ -89,6 +108,18 @@ csource() {
     local OUTPUT_PATH=${TMPDIR:-/tmp}/${C_SOURCE##*/}.$$.out;
     shift
     gcc "$C_SOURCE" "$@" -o "$OUTPUT_PATH" && "$OUTPUT_PATH";
+    rm -f "$OUTPUT_PATH";
+    return 0;
+}
+
+
+cppsource() {
+    local C_SOURCE=$1
+    [[ $C_SOURCE ]]    || { echo "Missing operand" >&2; return 1; }
+    [[ -r $C_SOURCE ]] || { printf "File %s does not exist or is not readable\n" "$C_SOURCE" >&2; return 1; }
+    local OUTPUT_PATH=${TMPDIR:-/tmp}/${C_SOURCE##*/}.$$.out;
+    shift
+    g++ "$C_SOURCE" "$@" -o "$OUTPUT_PATH" && "$OUTPUT_PATH";
     rm -f "$OUTPUT_PATH";
     return 0;
 }
