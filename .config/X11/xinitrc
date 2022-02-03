@@ -26,4 +26,4 @@ pgrep -x redshift > /dev/null || redshift -l "$LAT":"$LON" &
 pgrep -x dunst    > /dev/null || dunst &
 pgrep -x picom    > /dev/null || picom &
 
-exec launch_dwm
+exec awesome
