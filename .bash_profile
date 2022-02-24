@@ -5,31 +5,32 @@
 export PATH="$HOME/.local/bin:$PATH"
 
 # Default programs
+export PAGER="less"
+export EDITOR="nvim"
 export VISUAL="nvim"
 export BROWSER="brave"
-export EDITOR="nvim"
-export PAGER="less"
 
 # XDG Base Directory
-export XDG_DATA_HOME="$HOME/.local/share"
-export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_CACHE_HOME="$HOME/.cache"
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_DATA_HOME="$HOME/.local/share"
 
 # SQLite
 export SQLITE_HISTORY="$XDG_DATA_HOME/sqlite/history"
 
 # npm
-export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
 export PATH="$PATH:$XDG_DATA_HOME/npm/bin"
+export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
 
 # node
 export NODE_REPL_HISTORY="$XDG_DATA_HOME/node/node_repl_history"
 
 # X11
-X11_CONFIG_DIR="$XDG_CONFIG_HOME/X11"
-export XINITRC="$X11_CONFIG_DIR/xinitrc"
-export XSERVERRC="$X11_CONFIG_DIR/xserverrc"
-export XRESOURCES="$X11_CONFIG_DIR/Xresources"
+_X11_CONFIG_DIR="$XDG_CONFIG_HOME/X11"
+
+export XINITRC="$_X11_CONFIG_DIR/xinitrc"
+export XSERVERRC="$_X11_CONFIG_DIR/xserverrc"
+export XRESOURCES="$_X11_CONFIG_DIR/Xresources"
 export XAUTHORITY="$XDG_RUNTIME_DIR/Xauthority"
 
 # gtk2
@@ -70,14 +71,17 @@ export DOCKER_CONFIG="$XDG_CONFIG_HOME"/docker
 # todo file
 export TODO_FILE="$XDG_DATA_HOME/todo.md"
 
-export C_INCLUDE_PATH="$HOME/.local/include"
-export LD_LIBRARY_PATH="$HOME/.local/lib/goat"
-export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$HOME/.local/lib/cbook"
+# gcc env vars
+_LOCAL_LIB="$HOME/.local/lib"
 
-export SCREEN_RES="1920x1080"
+export C_INCLUDE_PATH="$HOME/.local/include"
+export LIBRARY_PATH="$_LOCAL_LIB/goat:$_LOCAL_LIB/cbook"
+export LD_LIBRARY_PATH="$_LOCAL_LIB/goat:$_LOCAL_LIB/cbook"
+
+# dotfiles git directory
 export _DOTSDIR="$XDG_DATA_HOME/dotfiles"
 
-PRIVATE_PROFILE=$XDG_CONFIG_HOME/bash/private-profile
+_PRIVATE_PROFILE=$XDG_CONFIG_HOME/bash/private-profile
 
-[ -f "$PRIVATE_PROFILE" ] && . "$PRIVATE_PROFILE"
+[ -f "$_PRIVATE_PROFILE" ] && . "$_PRIVATE_PROFILE"
 [ -f ~/.bashrc ] && . ~/.bashrc
