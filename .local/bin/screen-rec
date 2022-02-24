@@ -1,0 +1,15 @@
+#!/bin/sh
+
+_PROG="screen-rec"
+
+if [ ! -z "$XDG_DATA_HOME" ]; then
+    _SAVE_DIR="$XDG_DATA_HOME/$_PROG"
+else
+    _SAVE_DIR="$HOME/.$_PROG"
+fi
+mkdir -p "$_SAVE_DIR" || _SAVE_DIR="$HOME"
+
+_SCREEN_RES=`xdpyinfo | awk '/dimensions/{print $2}'`
+
+ffmpeg -video_size $_SCREEN_RES -framerate 60 \
+    -f x11grab -i :0.0 "$_SAVE_DIR/$(date +"%Y-%m-%d-%H-%M-%S").mp4"
