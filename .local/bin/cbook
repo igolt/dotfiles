@@ -1,5 +1,0 @@
-#!/bin/sh
-
-[ -z "$1" ] && _PDF_VIEWER="zathura" || _PDF_VIEWER="$1"
-
-$_PDF_VIEWER "$HOME/Files/Documentos/Livros/Computação/the-c-programming-language/The C Programming Language.pdf"
