@@ -1,5 +1,4 @@
 #!/bin/sh
 
-SCROT_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/screenshots"
 mkdir -p "$SCROT_DIR"
-import "${SCROT_DIR}/$(date +"%Y-%m-%d-%H-%M-%S").png"
+import "$HOME/Screenshots/$(date +"%Y-%m-%d-%H-%M-%S").png"

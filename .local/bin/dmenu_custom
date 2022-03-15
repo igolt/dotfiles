@@ -1,8 +1,5 @@
 #!/bin/sh
 
-. ~/.config/colors/colors.sh
-
 FONT="Noto Sans Mono:size=12"
 
-dmenu -fn "$FONT" -nb "$BACKGROUND" -nf "$FOREGROUND" \
-	-sb "$CYAN" -sf "$FOREGROUND" "$@"
+dmenu -fn "$FONT"
