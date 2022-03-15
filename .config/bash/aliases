@@ -1,27 +1,28 @@
 # =========== ALIASES =========== #
 
-#info
+# docker
+alias dcup='docker-compose up'
+alias dcdwn='docker-compose down'
+
+# xclip
+alias clip='xclip -selection clipboard'
+
+# info
 alias info='info --vi-keys'
 
-#yarn
+# yarn
 alias yarn='yarn --use-yarnrc "$XDG_CONFIG_HOME/yarn/config"'
 
 # zathura
 alias zathura='zathura --fork'
 
 # Managing dotfiles
-alias dotfiles='git --git-dir="$_DOTSDIR" --work-tree="$HOME"'
+alias dotfiles='git --git-dir="${_DOTSDIR:-$HOME/.dotfiles}" --work-tree="$HOME"'
 alias d='dotfiles'
 alias ds='dotfiles status'
 
 # Bookmarks
-FACUL_DIR="$HOME/Files/Faculdade/2021"
-alias cdfacul="cd $FACUL_DIR"
-alias cdstenio="cd '$FACUL_DIR/DCC059 - Grafos'"
-alias cdpassini="cd '$FACUL_DIR/DCC160 - Lógica e Fundamentos para a computação'"
 alias cdvimrc="cd $XDG_CONFIG_HOME/nvim"
-
-alias cdnrc="cd '$HOME/Develop/nrc'"
 
 # ls
 alias ls='ls --color=auto'
@@ -71,14 +72,15 @@ alias pacremoveun='sudo pacman -Rns $(pacman -Qdtq)'
 # rm
 alias rm='rm -i'
 
-# conky
-alias conky-todo='conky -c ~/.config/conky/conky_todo.conf'
-
 # nmcli
 alias wifi='nmcli device wifi'
 
 # edit config files
 [ -f "/etc/portage/make.conf" ] && alias emkconf="sudoedit /etc/portage/make.conf"
-alias ebashrc='$EDITOR $HOME/.bashrc && source $HOME/.bashrc'
+alias ebashrc='$EDITOR "$HOME/.bashrc" && source "$HOME/.bashrc"'
+alias ealias='$EDITOR "$XDG_CONFIG_HOME/bash/aliases" && "$XDG_CONFIG_HOME/bash/aliases"'
+
+# private aliases
+source "$XDG_CONFIG_HOME/bash/private-aliases"
 
 # vim:ft=sh

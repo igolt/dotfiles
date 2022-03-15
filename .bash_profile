@@ -15,6 +15,9 @@ export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
 
+# MySQL
+export MYSQL_HISTFILE="$XDG_DATA_HOME"/mysql_history
+
 # SQLite
 export SQLITE_HISTORY="$XDG_DATA_HOME/sqlite/history"
 
@@ -68,10 +71,7 @@ export WGETRC="$XDG_CONFIG_HOME/wget/wgetrc"
 # docker
 export DOCKER_CONFIG="$XDG_CONFIG_HOME"/docker
 
-# todo file
-export TODO_FILE="$XDG_DATA_HOME/todo.md"
-
-# gcc env vars
+# GCC
 _LOCAL_LIB="$HOME/.local/lib"
 
 export C_INCLUDE_PATH="$HOME/.local/include"
@@ -83,5 +83,5 @@ export _DOTSDIR="$XDG_DATA_HOME/dotfiles"
 
 _PRIVATE_PROFILE=$XDG_CONFIG_HOME/bash/private-profile
 
-[ -f "$_PRIVATE_PROFILE" ] && . "$_PRIVATE_PROFILE"
-[ -f ~/.bashrc ] && . ~/.bashrc
+[ -f "$_PRIVATE_PROFILE" ] && source "$_PRIVATE_PROFILE"
+[ -f ~/.bashrc ] && source ~/.bashrc

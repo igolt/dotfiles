@@ -1,5 +1,10 @@
 # =========== FUNCTIONS =========== #
 
+cdf() {
+    _DIR=`fd $@ --type d | fzf`
+    [ $? = 0 ] && cd "$_DIR"
+}
+
 cdl() {
     cd "$@" && ls
 }
@@ -40,7 +45,7 @@ zf() {
 }
 
 spdf() {
-    local PDF="`find -name *.pdf | fzf`"
+    local PDF="`find -name '*.pdf' | fzf`"
     local VIEWER="zathura --fork"
 
     [ -n "$1" ] && VIEWER="$1"
@@ -107,7 +112,7 @@ csource() {
     [[ -r $C_SOURCE ]] || { printf "File %s does not exist or is not readable\n" "$C_SOURCE" >&2; return 1; }
     local OUTPUT_PATH=${TMPDIR:-/tmp}/${C_SOURCE##*/}.$$.out;
     shift
-    gcc "$C_SOURCE" "$@" -o "$OUTPUT_PATH" && "$OUTPUT_PATH";
+    gcc "$C_SOURCE" "$@" -o "$OUTPUT_PATH" -l cbook && "$OUTPUT_PATH";
     rm -f "$OUTPUT_PATH";
     return 0;
 }
