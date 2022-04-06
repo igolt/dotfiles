@@ -2,4 +2,4 @@
 
 FONT="Noto Sans Mono:size=12"
 
-dmenu -fn "$FONT"
+dmenu -fn "$FONT" "$@"
