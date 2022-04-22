@@ -28,6 +28,10 @@ complete -c man
 complete -c pgrep
 complete -c pkill
 
+if [ -f "/usr/share/fzf/key-bindings.bash" ]; then
+    source "/usr/share/fzf/key-bindings.bash"
+fi
+
 source "$XDG_CONFIG_HOME/nnn/config"
 
 source "$XDG_CONFIG_HOME/bash/aliases"
