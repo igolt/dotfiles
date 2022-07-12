@@ -2,7 +2,8 @@
 PROG_NAME="$(basename "$0")"
 
 # ======================= VARIABLES ====================== #
-CACHE_FILE="${XDG_CACHE_HOME:-$HOME/.cache}/wallpaper"
+CACHE_DIR="${XDG_CACHE_HOME:-$HOME/.cache}"
+CACHE_FILE="$CACHE_DIR/wallpaper"
 
 # Error codes
 FILE_DOES_NOT_EXIST=1
@@ -13,67 +14,61 @@ COULD_NOT_LOAD_CACHE=3
 
 # ====================== FUNCTIONS ====================== #
 _eputs() {
-	echo "$PROG_NAME: $@" >&2
+    echo "$PROG_NAME: $@" >&2
 }
 
 _str_str() {
-	# HAYSTACK="$1"
-	# NEEDLE="$2"
-	echo "$1" | grep -Fiq "$2"
+    # HAYSTACK="$1"
+    # NEEDLE="$2"
+    echo "$1" | grep -Fiq "$2"
 }
 
 _is_animated() {
-	# MIME_TYPE="$1"
-	_str_str "$1" "video" ||
-		_str_str "$1" "gif"
+    # MIME_TYPE="$1"
+    _str_str "$1" "video" ||
+        _str_str "$1" "gif"
 }
 
 _is_image() {
-	# MIME_TYPE="$1"
-	_str_str "$1" "image"
+    # MIME_TYPE="$1"
+    _str_str "$1" "image"
 }
 
 _clear_bg() {
-	animwal --stop
+    animwal --stop
 }
+
 # ======================================================= #
 
 if [ "$#" = 0 ]; then
-	if [ -x "$CACHE_FILE" ]; then
-		_clear_bg
-		$CACHE_FILE
-		exit
-	else
-		_eputs "Could not load '$CACHE_FILE'"
-		exit $COULD_NOT_LOAD_CACHE
-	fi
+    if [ -f "$CACHE_FILE" ]; then
+        WALL="$CACHE_FILE"
+    else
+        _eputs "Could not load '$CACHE_FILE'"
+        exit $COULD_NOT_LOAD_CACHE
+    fi
 elif [ ! -f "$1" ]; then
-	_eputs "File \"$1\" does not exist"
-	exit $FILE_DOES_NOT_EXIST
+    _eputs "File \"$1\" does not exist"
+    exit $FILE_DOES_NOT_EXIST
+else
+    WALL="$1"
 fi
 
-WALL="$(readlink -f "$1")"
-MIME="$(file --mime-type -Lb "$1")"
+echo "$WALL"
 
-# DEBUG echo "Wall: $WALL"
-# DEBUG echo "Mime: $MIME"
+WALL="$(readlink -f "$WALL")"
+MIME="$(file --mime-type -Lb "$WALL")"
 
 if _is_animated "$MIME"; then
-	SETWALL="animwal"
+    SETWALL="animwal"
 elif _is_image "$MIME"; then
-	_clear_bg
-	SETWALL="feh --no-fehbg --bg-fill"
+    _clear_bg
+    SETWALL="feh --no-fehbg --bg-fill"
 else
-	_eputs "Invalid mime type"
-	exit $INVALID_MIME_TYPE
+    _eputs "Invalid mime type"
+    exit $INVALID_MIME_TYPE
 fi
 
-# DEBUG echo "$SETWALL \"$WALL\""
-
 if $SETWALL "$WALL"; then
-  cat <<EOF >| "$CACHE_FILE"
-#! /bin/sh
-$SETWALL "$WALL"
-EOF
-	chmod +x "$CACHE_FILE"
+    mkdir -p "$CACHE_DIR" && ln -sf "$WALL" "$CACHE_FILE"
 fi

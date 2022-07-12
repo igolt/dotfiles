@@ -32,9 +32,10 @@ export NODE_REPL_HISTORY="$XDG_DATA_HOME/node/node_repl_history"
 _X11_CONFIG_DIR="$XDG_CONFIG_HOME/X11"
 
 export XINITRC="$_X11_CONFIG_DIR/xinitrc"
+export XPROFILE="$_X11_CONFIG_DIR/xprofile"
 export XSERVERRC="$_X11_CONFIG_DIR/xserverrc"
 export XRESOURCES="$_X11_CONFIG_DIR/Xresources"
-export XAUTHORITY="$XDG_RUNTIME_DIR/Xauthority"
+# export XAUTHORITY="$XDG_RUNTIME_DIR/Xauthority"
 
 # gtk2
 export GTK2_RC_FILES="$XDG_CONFIG_HOME/gtk-2.0/gtkrc"
@@ -56,6 +57,8 @@ export GNUPGHOME="$XDG_CONFIG_HOME/gnupg"
 
 # cargo
 export CARGO_HOME="$XDG_CONFIG_HOME/cargo"
+export CARGO_INSTALL_ROOT="$XDG_DATA_HOME/cargo/bin"
+export PATH="$PATH:$CARGO_INSTALL_ROOT"
 
 # Java
 export _JAVA_AWT_WM_NONREPARENTING=1 # Fix for Java applications on BSPWM
@@ -84,4 +87,4 @@ export _DOTSDIR="$XDG_DATA_HOME/dotfiles"
 _PRIVATE_PROFILE=$XDG_CONFIG_HOME/bash/private-profile
 
 [ -f "$_PRIVATE_PROFILE" ] && source "$_PRIVATE_PROFILE"
-[ -f ~/.bashrc ] && source ~/.bashrc
+[ -f "$HOME"/.bashrc ] && source "$HOME"/.bashrc

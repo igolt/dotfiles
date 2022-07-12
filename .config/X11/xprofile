@@ -1,0 +1,22 @@
+#!/bin/sh
+
+sysmodmap=/etc/X11/xinit/.Xmodmap
+usermodmap="${XMODMAP:-$HOME/.Xmodmap}"
+
+sysresources=/etc/X11/xinit/.Xresources
+userresources="${XRESOURCES:-$HOME/.Xresources}"
+
+# merge in defaults and keymaps
+
+[ -f "$sysmodmap" ] && xmodmap "$sysmodmap"
+[ -f "$usermodmap" ] && xmodmap "$usermodmap"
+[ -f "$sysresources" ] && xrdb -merge "$sysresources"
+[ -f "$userresources" ] && xrdb -merge "$userresources"
+
+_start_if_not_running() {
+    pgrep -x "$1" > /dev/null || $@ &
+}
+
+_start_if_not_running redshift -l "$LAT":"$LON"
+_start_if_not_running picom
+_start_if_not_running nm-applet

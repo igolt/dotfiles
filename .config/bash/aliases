@@ -13,6 +13,9 @@ alias info='info --vi-keys'
 # yarn
 alias yarn='yarn --use-yarnrc "$XDG_CONFIG_HOME/yarn/config"'
 
+# irssi
+alias irssi='irssi --config="$XDG_CONFIG_HOME"/irssi/config --home="$XDG_DATA_HOME"/irssi'
+
 # zathura
 alias zathura='zathura --fork'
 

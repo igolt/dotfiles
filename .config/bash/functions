@@ -1,7 +1,28 @@
 # =========== FUNCTIONS =========== #
 
+# Copies the default stylua config to current dir
+cp-stylua() {
+    local DEFAULT_CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/stylua/stylua.toml"
+
+    if [ ! -f "$DEFAULT_CONFIG" ]; then
+        echo "cp-stylua: Could not load default config file `$DEFAULT_CONFIG`" >&2
+        return 1
+    fi
+    cp "$DEFAULT_CONFIG" .stylua.toml
+}
+
+cdff() {
+    local _DIR=`fd $@ | fzf`
+
+    [ $? = 0 ] && {
+        [ -d "$_DIR" ] || _DIR=`dirname "$_DIR"`
+        cd "$_DIR"
+    }
+}
+
 cdf() {
-    _DIR=`fd $@ --type d | fzf`
+    local _DIR=`fd $@ --type d | fzf`
+
     [ $? = 0 ] && cd "$_DIR"
 }
 
@@ -16,14 +37,14 @@ mkclassf() {
 
 # Cria um diretório pra um tópico de uma disciplina
 mktopicf() {
+    local NUM=1
+
     if [ -f ".topicd" ]; then
         NUM=`cat .topicd`
         NUM=$((NUM + 1))
-    else
-        NUM=1
     fi
 
-    DIR="0${NUM} - $1"
+    local DIR="0${NUM} - $1"
     local SLIDES_FOLDER="$DIR/Slides"
     local EXERCISES_FOLDER="$DIR/Exercícios"
     local VIDEOS_FOLDER="$DIR/Vídeos"
