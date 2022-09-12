@@ -82,6 +82,9 @@ alias wifi='nmcli device wifi'
 [ -f "/etc/portage/make.conf" ] && alias emkconf="sudoedit /etc/portage/make.conf"
 alias ebashrc='$EDITOR "$HOME/.bashrc" && source "$HOME/.bashrc"'
 alias ealias='$EDITOR "$XDG_CONFIG_HOME/bash/aliases" && source "$XDG_CONFIG_HOME/bash/aliases"'
+alias epalias='$EDITOR "$XDG_CONFIG_HOME/bash/private-aliases" && source "$XDG_CONFIG_HOME/bash/private-aliases"'
+
+alias startx='startx -- -keeptty >| "$XDG_DATA_HOME/xorg/session.log" 2>&1'
 
 # private aliases
 source "$XDG_CONFIG_HOME/bash/private-aliases"
