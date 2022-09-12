@@ -6,6 +6,11 @@ usermodmap="${XMODMAP:-$HOME/.Xmodmap}"
 sysresources=/etc/X11/xinit/.Xresources
 userresources="${XRESOURCES:-$HOME/.Xresources}"
 
+USERXSESSION="$XDG_CACHE_HOME/X11/xsession"
+USERXSESSIONRC="$XDG_CACHE_HOME/X11/xsessionrc"
+ALTUSERXSESSION="$XDG_CACHE_HOME/X11/Xsession"
+ERRFILE="$XDG_CACHE_HOME/X11/xsession-errors"
+
 # merge in defaults and keymaps
 
 [ -f "$sysmodmap" ] && xmodmap "$sysmodmap"
@@ -13,10 +18,17 @@ userresources="${XRESOURCES:-$HOME/.Xresources}"
 [ -f "$sysresources" ] && xrdb -merge "$sysresources"
 [ -f "$userresources" ] && xrdb -merge "$userresources"
 
+_restart_if_running() {
+    if pgrep -x "$1" > /dev/null; then
+        pkill -x "$1"
+    fi
+    $@ &
+}
+
 _start_if_not_running() {
     pgrep -x "$1" > /dev/null || $@ &
 }
 
-_start_if_not_running redshift -l "$LAT":"$LON"
+_restart_if_running redshift -l "$LAT":"$LON"
 _start_if_not_running picom
 _start_if_not_running nm-applet
