@@ -1,6 +1,6 @@
 #!/bin/sh
 
-PIDFILE="${XDG_RUNTIME_DIR:-/var/run/user/$(id -ru)}/aniwal-pids"
+PIDFILE="${XDG_RUNTIME_DIR:-/var/run/user/$(id -ru)}/animwal-pids"
 
 _close_running() {
     if [ -e "$PIDFILE" ]; then
@@ -12,20 +12,19 @@ _close_running() {
 
 _setwal() {
     xwinwrap -fdt -nf -un -ov -ni -fs -- mpv --no-stop-screensaver             \
-        --no-osd-bar --no-terminal --no-input-default-bindings                 \
+        --no-osd-bar --no-terminal --no-input-default-bindings --mute=yes      \
         --no-keepaspect --loop --fullscreen -wid WID "$1" 2>/dev/null &
 
     echo "$!" >| "$PIDFILE"
 }
 
+_close_running
 
 for ARG in "$@"; do
     if [ "$ARG" = '--stop' ]; then
-        _close_running
         exit
     fi
 done
 
-_close_running
 sleep 0.5
 _setwal "$1"
