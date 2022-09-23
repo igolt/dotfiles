@@ -1,4 +1,0 @@
-#!/bin/sh
-
-mkdir -p "$SCROT_DIR"
-import "$HOME/Screenshots/$(date +"%Y-%m-%d-%H-%M-%S").png"
