@@ -72,9 +72,6 @@ alias pacinstall='sudo pacman -S'
 alias pacremove='sudo pacman -Rns'
 alias pacremoveun='sudo pacman -Rns $(pacman -Qdtq)'
 
-# rm
-alias rm='rm -i'
-
 # nmcli
 alias wifi='nmcli device wifi'
 
