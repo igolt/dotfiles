@@ -74,12 +74,15 @@ export WGETRC="$XDG_CONFIG_HOME/wget/wgetrc"
 # docker
 export DOCKER_CONFIG="$XDG_CONFIG_HOME"/docker
 
+# haskell (ghcup)
+export GHCUP_USE_XDG_DIRS=true
+
 # GCC
 _LOCAL_LIB="$HOME/.local/lib"
 
 export C_INCLUDE_PATH="$HOME/.local/include"
-export LIBRARY_PATH="$_LOCAL_LIB/goat:$_LOCAL_LIB/cbook"
-export LD_LIBRARY_PATH="$_LOCAL_LIB/goat:$_LOCAL_LIB/cbook"
+export LIBRARY_PATH="$_LOCAL_LIB:$_LOCAL_LIB/goat:$_LOCAL_LIB/cbook"
+export LD_LIBRARY_PATH="$LIBRARY_PATH"
 
 # dotfiles git directory
 export _DOTSDIR="$XDG_DATA_HOME/dotfiles"
