@@ -9,7 +9,7 @@ else
 fi
 mkdir -p "$_SAVE_DIR" || _SAVE_DIR="$HOME"
 
-_SCREEN_RES=`xdpyinfo | awk '/dimensions/{print $2}'`
+_SCREEN_RES=`xrandr | grep 'connected' | grep -oP '\d+x\d+'`
 
 ffmpeg -video_size $_SCREEN_RES -framerate 60 \
     -f x11grab -i :0.0 "$_SAVE_DIR/$(date +"%Y-%m-%d-%H-%M-%S").mp4"
