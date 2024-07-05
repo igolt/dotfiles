@@ -1,17 +1,16 @@
 # =========== ALIASES =========== #
+alias vim=nvim
 
 # docker
-alias dcup='docker-compose up'
-alias dcdwn='docker-compose down'
+alias dps='docker ps'
+alias dcup='docker compose up'
+alias dcdwn='docker compose down'
 
 # xclip
 alias clip='xclip -selection clipboard'
 
 # info
 alias info='info --vi-keys'
-
-# yarn
-alias yarn='yarn --use-yarnrc "$XDG_CONFIG_HOME/yarn/config"'
 
 # irssi
 alias irssi='irssi --config="$XDG_CONFIG_HOME"/irssi/config --home="$XDG_DATA_HOME"/irssi'
@@ -42,6 +41,7 @@ alias diff='diff --color=auto'
 alias grep='grep --color=auto'
 
 # git
+alias git?="'git log -10 --graph --pretty=format'''%Cgreen%ad%Creset %C(auto)%h%d %Cblue(%<(10,trunc)%an)%Creset %s''' --date=format:'''%d/%m/%Y %H:%M (%a)''''"
 alias g='git'
 alias ga='git add'
 alias gs='git status'
@@ -79,6 +79,7 @@ alias ealias='$EDITOR "$XDG_CONFIG_HOME/bash/aliases" && source "$XDG_CONFIG_HOM
 alias epalias='$EDITOR "$XDG_CONFIG_HOME/bash/private-aliases" && source "$XDG_CONFIG_HOME/bash/private-aliases"'
 
 # private aliases
-source "$XDG_CONFIG_HOME/bash/private-aliases"
+
+# source "$XDG_CONFIG_HOME/bash/private-aliases"
 
 # vim:ft=sh
