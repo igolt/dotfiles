@@ -2,7 +2,7 @@ export ZSH="$HOME/.local/share/oh-my-zsh"
 
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
-plugins=(colored-man-pages git docker zsh-autosuggestions)
+plugins=(colored-man-pages git docker docker-compose zsh-autosuggestions)
 
 ZSH_AUTOSUGGEST_STRATEGY=(completion history)
 
@@ -37,6 +37,11 @@ cdf() {
 }
 
 alias gs='git status'
+
+alias mongo-prod="kubectl port-forward svc/mongodb 32000:27017 -n prod"
+alias pg-prod="kubectl port-forward svc/postgres 32001:5432 -n prod"
+alias mongo-homolog="kubectl port-forward svc/mongodb-homolog 31000:27017 -n homolog"
+alias pg-homolog="kubectl port-forward svc/postgres-homolog 31001:5432 -n homolog"
 
 [[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
 
