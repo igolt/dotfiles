@@ -19,7 +19,13 @@ bindkey -s '^v' 'nvim\n'
 alias vim=nvim
 alias v=vim
 
-source $HOME/.config/zsh/fzf-bindings.zsh
+source "${XDG_CONFIG_HOME:-$HOME/.config}/zsh/fzf-keybindings.zsh"
+source "${XDG_CONFIG_HOME:-$HOME/.config}/zsh/aliases.zsh"
+
+function swap() {
+    local TMPFILE=tmp.$$
+    mv "$1" $TMPFILE && mv "$2" "$1" && mv $TMPFILE "$2"
+}
 
 cdff() {
   local _DIR=`fd $@ | fzf`
