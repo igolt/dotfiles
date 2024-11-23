@@ -15,6 +15,9 @@ export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
 
+# Bat
+export BAT_THEME=
+
 # MySQL
 export MYSQL_HISTFILE="$XDG_DATA_HOME"/mysql_history
 
@@ -24,6 +27,10 @@ export SQLITE_HISTORY="$XDG_DATA_HOME/sqlite/history"
 # npm
 export PATH="$PATH:$XDG_DATA_HOME/npm/bin"
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
+
+# Gem
+export GEM_HOME="$(gem env user_gemhome)"
+export PATH="$PATH:$GEM_HOME/bin"
 
 # node
 export NODE_REPL_HISTORY="$XDG_DATA_HOME/node/node_repl_history"
@@ -59,6 +66,10 @@ export GNUPGHOME="$XDG_CONFIG_HOME/gnupg"
 export CARGO_HOME="$XDG_CONFIG_HOME/cargo"
 export CARGO_INSTALL_ROOT="$XDG_DATA_HOME/cargo/bin"
 export PATH="$PATH:$CARGO_INSTALL_ROOT"
+
+# Go
+export GOPATH="$XDG_DATA_HOME/go"
+export GOMODCACHE="$XDG_CACHE_HOME/go/mod"
 
 # Java
 export _JAVA_AWT_WM_NONREPARENTING=1 # Fix for Java applications on BSPWM
