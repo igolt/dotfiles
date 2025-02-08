@@ -70,6 +70,7 @@ export PATH="$PATH:$CARGO_INSTALL_ROOT"
 # Go
 export GOPATH="$XDG_DATA_HOME/go"
 export GOMODCACHE="$XDG_CACHE_HOME/go/mod"
+export PATH="$GOPATH/bin:$PATH"
 
 # Java
 export _JAVA_AWT_WM_NONREPARENTING=1 # Fix for Java applications on BSPWM

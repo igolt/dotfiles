@@ -5,7 +5,14 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-source /usr/share/git/completion/git-prompt.sh
+_source_if_exists() {
+    FILE="$1"
+    if [ -f "$FILE" ]; then
+        source "$FILE"
+    fi
+}
+
+_source_if_exists /usr/share/git/completion/git-prompt.sh
 
 GIT_PS1_SHOWDIRTYSTATE="true"
 GIT_PS1_SHOWUNTRACKEDFILES="true"
@@ -20,19 +27,20 @@ set -o noclobber
 
 # ======== BASIC COMPLETION ========= #
 
-source /usr/share/git/completion/git-completion.bash
+_source_if_exists /usr/share/git/completion/git-completion.bash
 complete -c sudo
 complete -c pidof
 complete -c killall
 complete -c man
 complete -c pgrep
 complete -c pkill
+# =================================== #
+# fzf key bindings
+_source_if_exists "/usr/share/fzf/key-bindings.bash"
 
-if [ -f "/usr/share/fzf/key-bindings.bash" ]; then
-    source "/usr/share/fzf/key-bindings.bash"
-fi
+# nnn configuration
+_source_if_exists "$XDG_CONFIG_HOME/nnn/config"
 
-source "$XDG_CONFIG_HOME/nnn/config"
-
-source "$XDG_CONFIG_HOME/bash/aliases"
-source "$XDG_CONFIG_HOME/bash/functions"
+# Load aliases and functions
+_source_if_exists "$XDG_CONFIG_HOME/bash/aliases"
+_source_if_exists "$XDG_CONFIG_HOME/bash/functions"

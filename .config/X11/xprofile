@@ -18,6 +18,8 @@ ERRFILE="$XDG_CACHE_HOME/X11/xsession-errors"
 [ -f "$sysresources" ] && xrdb -merge "$sysresources"
 [ -f "$userresources" ] && xrdb -merge "$userresources"
 
+[ -f "$HOME/.profile" ] && source "$HOME/.profile"
+
 _restart_if_running() {
     if pgrep -x "$1" > /dev/null; then
         pkill -x "$1"
@@ -28,6 +30,9 @@ _restart_if_running() {
 _start_if_not_running() {
     pgrep -x "$1" > /dev/null || $@ &
 }
+
+
+xinput set-prop 'DELL089E:00 06CB:CCA6 Touchpad' 'libinput Tapping Enabled' 1
 
 _restart_if_running redshift -l "$LAT":"$LON"
 _start_if_not_running picom

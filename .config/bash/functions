@@ -8,7 +8,17 @@ cp-stylua() {
         echo "cp-stylua: Could not load default config file `$DEFAULT_CONFIG`" >&2
         return 1
     fi
-    cp "$DEFAULT_CONFIG" .stylua.toml
+    cp "$DEFAULT_CONFIG" .stylua.toml && echo "cp-stylua: .stylua.toml created in the current directory"
+}
+
+toggle-hist() {
+    local STATUS="$(set -o | grep history | cut -f 2)"
+
+    if [ "$STATUS" = "on" ]; then
+        set +o history && echo "History off"
+    else
+        set -o history && echo "History on"
+    fi
 }
 
 cdff() {
