@@ -64,8 +64,8 @@ export GNUPGHOME="$XDG_CONFIG_HOME/gnupg"
 
 # cargo
 export CARGO_HOME="$XDG_CONFIG_HOME/cargo"
-export CARGO_INSTALL_ROOT="$XDG_DATA_HOME/cargo/bin"
-export PATH="$PATH:$CARGO_INSTALL_ROOT"
+export CARGO_INSTALL_ROOT="$XDG_DATA_HOME/cargo"
+export PATH="$PATH:$CARGO_INSTALL_ROOT/bin"
 
 # Go
 export GOPATH="$XDG_DATA_HOME/go"
@@ -102,4 +102,6 @@ export _DOTSDIR="$XDG_DATA_HOME/dotfiles"
 _PRIVATE_PROFILE=$XDG_CONFIG_HOME/bash/private-profile
 
 [ -f "$_PRIVATE_PROFILE" ] && source "$_PRIVATE_PROFILE"
-[ -f "$HOME"/.bashrc ] && source "$HOME"/.bashrc
+# [ -f "$HOME"/.bashrc ] && source "$HOME"/.bashrc
+
+. "$HOME/.local/share/../bin/env"

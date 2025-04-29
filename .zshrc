@@ -1,5 +1,7 @@
 export ZSH="$HOME/.local/share/oh-my-zsh"
 
+source "$HOME/.profile"
+
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
 plugins=(colored-man-pages git docker docker-compose zsh-autosuggestions)
@@ -54,3 +56,5 @@ alias pg-homolog="kubectl port-forward svc/postgres-homolog 31001:5432 -n homolo
 export PYENV_ROOT="$XDG_DATA_HOME/pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
+
+. "$HOME/.local/share/../bin/env"
