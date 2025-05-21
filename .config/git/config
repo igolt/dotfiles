@@ -1,0 +1,10 @@
+[user]
+	name = Igor Correa Rodrigues
+	mail = igorcorrearodrigues@gmail.com
+	email = igorcorrearodrigues@gmail.com
+[pull]
+	rebase = false
+[init]
+	defaultBranch = main
+[push]
+	autoSetupRemote = true
